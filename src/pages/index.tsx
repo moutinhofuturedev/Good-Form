@@ -4,7 +4,7 @@ import { Form } from "../components/Form";
 
 export default function Home() {
   return (
-    <Center h="100vh" w="100vw" bg="blackAlpha.700">
+    <Center h="100vh" w="100vw">
       <Head>
         <title>Form | React</title>
       </Head>
