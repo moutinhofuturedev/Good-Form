@@ -55,7 +55,9 @@ export function Form() {
                 <Select defaultValue="0" {...register("profession", { validate: (value) => value !== "0" })}>
                     <option value="0">Selecione sua profissão...</option>
                     <option value="Desenvolvedor">Desenvolvedor</option>
-                    <option value="other">Outros</option>
+                    <option value="Agilista">Agilista</option>
+                    <option value="QA">QA</option>
+                    <option value="Outros">Outros</option>
                 </Select>
                 {errors.profession?.type === "validate" && (
                     <Text color="red.600" fontSize="sm">Este campo é obrigatório</Text>
