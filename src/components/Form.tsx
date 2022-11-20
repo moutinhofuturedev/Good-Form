@@ -6,16 +6,16 @@ interface FormData {
     name: string
     email: string;
     password: string;
-    privacyTerms: string
+    privacyTerms: boolean
     profession: string;
 }
 
 export function Form() {
-    const [itens, setItens] = useState<FormData>({
+    const [ itens, setItens ] = useState<FormData>({
         name: '',
         email: '',
         password: '',
-        privacyTerms: '',
+        privacyTerms: false, //iniciando o estado boolean com false
         profession: '',
     })
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
@@ -65,7 +65,7 @@ export function Form() {
                 {errors.profession?.type === "validate" && (
                     <Text color="red.500" fontSize="sm">Este campo é obrigatório</Text>
                 )}
-                <Checkbox mt="1rem" {...register("privacyTerms", { validate: (value) => value === "true" })}>
+                <Checkbox mt="1rem" {...register("privacyTerms", { validate: (value) => value === true })}>
                   Eu concordo com os termos de privacidade
                 </Checkbox>
                 {errors.privacyTerms?.type === "validate" && (
