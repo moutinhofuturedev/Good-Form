@@ -2,8 +2,11 @@ import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input,
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormData } from "../types/type";
+import { useToast } from '@chakra-ui/react'
 
 export function Form() {
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
+    const toast = useToast()
     const [ itens, setItens ] = useState<FormData>({
         name: '',
         email: '',
@@ -11,7 +14,7 @@ export function Form() {
         privacyTerms: false, //iniciando o estado boolean com false
         profession: '',
     })
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
+
     const OnSubmit = (data: FormData) => {
         setItens({
             name: data.name,
@@ -19,6 +22,14 @@ export function Form() {
             password: data.password,
             privacyTerms: data.privacyTerms,
             profession: data.profession
+        })
+        toast({
+          title: 'Conta criada.',
+          description: "Cadastro realizado com sucesso.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+          position:  "top-left"
         })
     }
 
