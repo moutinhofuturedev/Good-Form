@@ -3,20 +3,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormData } from "../types/type";
 import { useToast } from '@chakra-ui/react'
+import { api } from "../lib/api";
 
 export function Form() {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
     const toast = useToast()
-    const [ itens, setItens ] = useState<FormData>({
-        name: '',
-        email: '',
-        password: '',
-        privacyTerms: false, //iniciando o estado boolean com false
-        profession: '',
-    })
 
-    const OnSubmit = (data: FormData) => {
-        setItens({
+    const OnSubmit = async (data: FormData) => {
+        await api.post('form', {
             name: data.name,
             email: data.email,
             password: data.password,
@@ -81,12 +75,6 @@ export function Form() {
                     </Button>
                 </Center>
             </FormControl>
-            <VStack spacing="0.5rem" fontSize="sm" position="absolute" ml="55rem" align="flex-start">
-                <Text>{itens.name}</Text>
-                <Text>{itens.email}</Text>
-                <Text>{itens.password}</Text>
-                <Text>{itens.profession}</Text>
-            </VStack>
         </Flex>
     )
 }
