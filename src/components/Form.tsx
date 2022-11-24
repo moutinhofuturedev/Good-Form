@@ -59,7 +59,7 @@ export function Form() {
                     <Text color="red.500" fontSize="sm">Este campo é obrigatório</Text>
                 )}
                 <Checkbox mt="1rem" {...register("privacyTerms", { validate: (value) => value === true })}>
-                  <Text fontSize={["smaller","sm" ,"2xl"]}>Eu concordo com os termos de privacidade</Text>
+                  <Text fontSize={["smaller","sm" ,"medium"]}>Eu concordo com os termos de privacidade</Text>
                 </Checkbox>
                 {errors.privacyTerms?.type === "validate" && (
                     <Text color="red.500" fontSize="sm">Você deve aceitar os termos de privacidade</Text>
