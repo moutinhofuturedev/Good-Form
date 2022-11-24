@@ -30,9 +30,9 @@ export function Form() {
     }
 
     return (
-        <Flex height="100%" flexDirection="column" justifyContent="center" align="center">
-            <Heading as="h2" mb="2rem" fontSize="2xl">Formulário React Hook Form</Heading>
-            <FormControl minW="30rem">
+        <Flex height="100%" flexDirection="column" justifyContent="center" align="center" px="2rem">
+            <Heading as="h2" mb="2rem" fontSize={["lg" ,"2xl"]}>Formulário React Hook Form</Heading>
+            <FormControl minW={["15rem" ,"20rem"]}>
                 <FormLabel>Name</FormLabel>
                 <Input type="text" id="name" placeholder="Seu nome" {...register("name", { required: true })} />
                 {errors.name?.type === "required" && (
@@ -66,7 +66,7 @@ export function Form() {
                     <Text color="red.500" fontSize="sm">Este campo é obrigatório</Text>
                 )}
                 <Checkbox mt="1rem" {...register("privacyTerms", { validate: (value) => value === true })}>
-                  Eu concordo com os termos de privacidade
+                  <Text fontSize={["smaller","sm" ,"2xl"]}>Eu concordo com os termos de privacidade</Text>
                 </Checkbox>
                 {errors.privacyTerms?.type === "validate" && (
                     <Text color="red.500" fontSize="sm">Você deve aceitar os termos de privacidade</Text>
