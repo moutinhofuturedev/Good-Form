@@ -1,0 +1,28 @@
+{
+  "form": [
+    {
+      "id": 1,
+      "name": "Paulo",
+      "email": "paulo_vicali@gmail.com",
+      "password": "121212121212",
+      "privacyTerms": true,
+      "profession": "Desenvolvedor"
+    },
+    {
+      "name": "Renan Oliveira",
+      "email": "renan_vicali@icloud.com",
+      "password": "09876543210",
+      "privacyTerms": true,
+      "profession": "QA",
+      "id": 2
+    },
+    {
+      "name": "Ricardo Apolo",
+      "email": "apolo_ricardo@gmail.com",
+      "password": "665544338899",
+      "privacyTerms": true,
+      "profession": "Outros",
+      "id": 3
+    }
+  ]
+}
