@@ -1,14 +1,7 @@
 import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
-interface FormData {
-    name: string
-    email: string;
-    password: string;
-    privacyTerms: boolean
-    profession: string;
-}
+import { FormData } from "../types/type";
 
 export function Form() {
     const [ itens, setItens ] = useState<FormData>({
