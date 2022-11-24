@@ -1,5 +1,4 @@
 import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Text, VStack } from "@chakra-ui/react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormData } from "../types/type";
 import { useToast } from '@chakra-ui/react'
@@ -17,6 +16,7 @@ export function Form() {
             privacyTerms: data.privacyTerms,
             profession: data.profession
         })
+        console.log(data)
         toast({
           title: 'Conta criada.',
           description: "Cadastro realizado com sucesso.",
