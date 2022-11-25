@@ -17,28 +17,12 @@
       "id": 2
     },
     {
-      "name": "Ricardo Apolo",
-      "email": "apolo_ricardo@gmail.com",
-      "password": "665544338899",
+      "name": "Erick Ferreira",
+      "email": "erick_ferreira@icloud.com",
+      "password": "tempode Deus",
       "privacyTerms": true,
       "profession": "Outros",
       "id": 3
-    },
-    {
-      "name": "Ricardo Gomes",
-      "email": "gomes_ricardo@icloud.com",
-      "password": "5647382910",
-      "privacyTerms": true,
-      "profession": "Desenvolvedor",
-      "id": 4
-    },
-    {
-      "name": "Ricardo Gomes",
-      "email": "gomes_ricardo@icloud.com",
-      "password": "5647382910",
-      "privacyTerms": true,
-      "profession": "Desenvolvedor",
-      "id": 5
     }
   ]
 }
