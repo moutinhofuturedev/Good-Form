@@ -2,11 +2,13 @@ import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input,
 import { useForm } from "react-hook-form";
 import { FormData } from "../types/type";
 import { useToast } from '@chakra-ui/react'
+import { useRouter } from "next/router";
 import { api } from "../api/api";
 
 export function Form() {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
     const toast = useToast()
+    const router = useRouter()
 
     const OnSubmit = async (data: FormData) => {
         await api.post('form', {
@@ -25,6 +27,8 @@ export function Form() {
           isClosable: true,
           position:  "top-left"
         })
+
+        router.push("/")
     }
 
     return (
