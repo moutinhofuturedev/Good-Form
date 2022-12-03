@@ -1,7 +1,6 @@
-import { Center, Icon, Text } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import Head from "next/head";
-import Link from "next/link";
-import { BiLinkExternal } from "react-icons/bi"
+import { PageLink } from "../components/Link/PageLink";
 
 export default function Home() {
     return (
@@ -9,11 +8,7 @@ export default function Home() {
             <Head>
                 <title>Form | React</title>
             </Head>
-            <Link href="/dash" passHref>
-                <Text fontSize="2xl" fontWeight="bold">
-                    Formulário <Icon as={BiLinkExternal} />
-                </Text>
-            </Link>
+            <PageLink href="/dash"/>
         </Center>
     )
 }
