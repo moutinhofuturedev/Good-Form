@@ -15,10 +15,11 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Icon,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { MdNavigateNext } from "react-icons/md";
+import { MdNavigateNext, MdError } from "react-icons/md";
 import { api } from '../api/api';
 
 type ListProps = {
@@ -41,10 +42,10 @@ export default function List() {
        const data = await response.data
 
        setUser({
-        name: data[1].name,
-        email: data[1].email,
-        password: data[1].password,
-        profession: data[1].profession,
+        name: data[0].name,
+        email: data[0].email,
+        password: data[0].password,
+        profession: data[0].profession,
     })
      }
 
@@ -89,10 +90,10 @@ export default function List() {
                         </Thead>
                         <Tbody>
                             <Tr>
-                                <Td>{user.name}</Td>
-                                <Td>{user.email}</Td>
-                                <Td>{user.profession}</Td>
-                                <Td>{user.password}</Td>
+                                <Td>{!user.name ?  <Icon as={MdError} w={5} h={5}/> : user.name}</Td>
+                                <Td>{!user.email ? <Icon as={MdError} w={5} h={5}/> : user.email}</Td>
+                                <Td>{!user.profession ? <Icon as={MdError} w={5} h={5}/> : user.profession}</Td>
+                                <Td>{!user.password ? <Icon as={MdError} w={5} h={5}/> : user.password}</Td>
                             </Tr>
                         </Tbody>
                     </Table>
