@@ -12,9 +12,13 @@ import {
   Tr,
   Flex,
   Container,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { MdNavigateNext } from "react-icons/md";
 import { api } from '../api/api';
 
 type ListProps = {
@@ -53,13 +57,26 @@ export default function List() {
             <Head>
                 <title>Form | Listagem</title>
             </Head>
+            <Breadcrumb fontWeight='medium' fontSize='sm' ml="1rem" mt="1rem" separator={<MdNavigateNext color='gray.500'/>}>
+                <BreadcrumbItem>
+                    <BreadcrumbLink href='/dash'>Formulário</BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbItem>
+                    <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbItem isCurrentPage color="blue.400">
+                    <BreadcrumbLink href='/list'>Listagem</BreadcrumbLink>
+                </BreadcrumbItem>
+            </Breadcrumb>
             <Flex flexDirection="column" justifyContent="center" alignItems="center">
             <Container mt="2rem">
                 <Heading as="h2" size="lg">Registros</Heading>
                 <Text fontSize="sm">Veja aqui a lista de pessoas cadastradas.</Text>
             </Container>
             <Divider py="1rem" maxW="560px"/>
-            <Box border="1px" borderColor="gray.600" borderRadius="1rem" p="1rem" mt="2rem" maxW="680px">
+            <Box border="1px" borderColor="gray.600" borderRadius="1rem" p="1rem" mt="2rem" minW="380px">
                 <TableContainer>
                     <Table size='sm'>
                         <Thead>

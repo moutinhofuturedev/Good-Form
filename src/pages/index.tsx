@@ -1,14 +1,30 @@
-import { Center } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import { PageLink } from "../components/Link/PageLink";
+import { MdNavigateNext } from "react-icons/md"
 
 export default function Home() {
     return (
-        <Center h="100vh">
+        <Box h="100vh">
             <Head>
-                <title>Form | React</title>
+                <title>Form | Home</title>
             </Head>
-            <PageLink href="/dash"/>
-        </Center>
+            <Breadcrumb spacing='8px' fontSize="sm" ml="1rem" mt="1rem" separator={<MdNavigateNext color='gray.500' />}>
+                <BreadcrumbItem>
+                    <BreadcrumbLink href='/list'>Listagem</BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbItem>
+                    <BreadcrumbLink href='/dash'>Formulário</BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbItem isCurrentPage color="blue.400">
+                    <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+                </BreadcrumbItem>
+            </Breadcrumb>
+            <Flex justifyContent="center" alignItems="center" mt="">
+                <PageLink href="/dash"/>
+            </Flex>
+        </Box>
     )
 }
