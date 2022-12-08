@@ -9,7 +9,7 @@ export default function Home() {
             <Head>
                 <title>Form | Home</title>
             </Head>
-            <Breadcrumb spacing='8px' fontSize="sm" ml="1rem" mt="1rem" separator={<MdNavigateNext color='gray.500' />}>
+            <Breadcrumb spacing='8px' fontSize="sm" ml="1rem" mt="1rem" mb="4rem" separator={<MdNavigateNext color='gray.500' />}>
                 <BreadcrumbItem>
                     <BreadcrumbLink href='/list'>Listagem</BreadcrumbLink>
                 </BreadcrumbItem>
@@ -22,7 +22,7 @@ export default function Home() {
                     <BreadcrumbLink href='/'>Home</BreadcrumbLink>
                 </BreadcrumbItem>
             </Breadcrumb>
-            <Flex justifyContent="center" alignItems="center" mt="">
+            <Flex justifyContent="center" alignItems="center">
                 <PageLink href="/dash"/>
             </Flex>
         </Box>
