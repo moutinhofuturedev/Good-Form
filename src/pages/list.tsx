@@ -41,12 +41,14 @@ export default function List() {
        const response = await api.get('/form')
        const data = await response.data
 
-       setUser({
-        name: data[0].name,
-        email: data[0].email,
-        password: data[0].password,
-        profession: data[0].profession,
-    })
+       setTimeout(() => {
+        setUser({
+            name: data[0].name,
+            email: data[0].email,
+            password: data[0].password,
+            profession: data[0].profession,
+        })
+       }, 3000)
      }
 
      useEffect(() => {
@@ -77,29 +79,29 @@ export default function List() {
                 <Text fontSize="sm">Veja aqui a lista de pessoas cadastradas.</Text>
             </Container>
             <Divider py="1rem" maxW="560px"/>
-            <Box border="1px" borderColor="gray.600" borderRadius="1rem" p="1rem" mt="2rem" minW="380px">
-                <TableContainer>
-                    <Table size='sm'>
-                        <Thead>
-                            <Tr>
-                                <Th>Nome</Th>
-                                <Th>E-mail</Th>
-                                <Th>Profissão</Th>
-                                <Th>Senha</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            <Tr>
-                                <Td>{!user.name ?  <Icon as={MdError} w={5} h={5}/> : user.name}</Td>
-                                <Td>{!user.email ? <Icon as={MdError} w={5} h={5}/> : user.email}</Td>
-                                <Td>{!user.profession ? <Icon as={MdError} w={5} h={5}/> : user.profession}</Td>
-                                <Td>{!user.password ? <Icon as={MdError} w={5} h={5}/> : user.password}</Td>
-                            </Tr>
-                        </Tbody>
-                    </Table>
-                </TableContainer>
-                <Divider mt="2rem" />
-            </Box>
+                <Box border="1px" borderColor="gray.600" borderRadius="1rem" p="1rem" mt="2rem" maxW="620px">
+                    <TableContainer>
+                        <Table size='sm'>
+                            <Thead>
+                                <Tr>
+                                    <Th>Nome</Th>
+                                    <Th>E-mail</Th>
+                                    <Th>Profissão</Th>
+                                    <Th>Senha</Th>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
+                                <Tr>
+                                    <Td>{!user.name ? <Icon as={MdError} w={5} h={5} /> : user.name}</Td>
+                                    <Td>{!user.email ? <Icon as={MdError} w={5} h={5} /> : user.email}</Td>
+                                    <Td>{!user.profession ? <Icon as={MdError} w={5} h={5} /> : user.profession}</Td>
+                                    <Td>{!user.password ? <Icon as={MdError} w={5} h={5} /> : user.password}</Td>
+                                </Tr>
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                    <Divider mt="2rem" />
+                </Box>
             </Flex>
         </Box>
     ) 
