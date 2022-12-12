@@ -21,15 +21,9 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { MdNavigateNext, MdError } from "react-icons/md";
 import { api } from '../api/api';
+import { ListProps } from "../types/type";
 
-type ListProps = {
-    name: string 
-    email: string 
-    password: string 
-    profession: string 
-}
-
-export default function List() {
+export default function List(item: any) {
     const [user, setUser] = useState<ListProps[]>([])
  
      async function loadList() {
@@ -69,7 +63,7 @@ export default function List() {
                 <Text fontSize="sm">Veja aqui a lista de pessoas cadastradas.</Text>
             </Container>
             <Divider py="1rem" maxW="560px"/>
-                <Box border="1px" borderColor="gray.600" borderRadius="1rem" p="1rem" mt="2rem" maxW="620px">
+                <Box border="1px" borderColor="gray.600" borderRadius="1rem" p="1rem" mt="2rem" minW="620px">
                     <TableContainer>
                         <Table size='sm'>
                             <Thead>
@@ -81,16 +75,16 @@ export default function List() {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                    {user.map((row, index) => {
-                                        return (
-                                            <Tr key={index}>
-                                            <Td>{row.name}</Td>
-                                            <Td>{row.email}</Td>
-                                            <Td>{row.profession}</Td>
-                                            <Td>{row.password}</Td>
-                                            </Tr>
-                                        )
-                                    })}
+                                {user.map((row, index) => {
+                                    return (
+                                        <Tr key={index}>
+                                            <Td>{!row.name ? <Icon as={MdError}/> : row.name}</Td>
+                                            <Td>{!row.email ? <Icon as={MdError}/> : row.email}</Td>
+                                            <Td>{!row.profession ? <Icon as={MdError}/> : row.profession}</Td>
+                                            <Td>{!row.password ? <Icon as={MdError}/> : row.password}</Td>
+                                        </Tr>
+                                    )
+                                })}
                             </Tbody>
                         </Table>
                     </TableContainer>
