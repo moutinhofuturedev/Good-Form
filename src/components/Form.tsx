@@ -31,7 +31,7 @@ export function Form() {
           position:  "top-left"
         })
 
-        router.push("/")
+        router.push("/list")
     }
 
     return (
