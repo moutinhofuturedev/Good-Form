@@ -30,24 +30,14 @@ type ListProps = {
 }
 
 export default function List() {
-    const [user, setUser] = useState<ListProps>({
-        name: '',
-        email: '',
-        password: '',
-        profession: '',
-    })
+    const [user, setUser] = useState<ListProps[]>([])
  
      async function loadList() {
-       const response = await api.get('/form')
-       const data = await response.data
+       const response = await api.get<ListProps[]>('/form')
+       const data = response.data
 
        setTimeout(() => {
-        setUser({
-            name: data[0].name,
-            email: data[0].email,
-            password: data[0].password,
-            profession: data[0].profession,
-        })
+        setUser(data)
        }, 3000)
      }
 
@@ -91,12 +81,16 @@ export default function List() {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                <Tr>
-                                    <Td>{!user.name ? <Icon as={MdError} w={5} h={5} /> : user.name}</Td>
-                                    <Td>{!user.email ? <Icon as={MdError} w={5} h={5} /> : user.email}</Td>
-                                    <Td>{!user.profession ? <Icon as={MdError} w={5} h={5} /> : user.profession}</Td>
-                                    <Td>{!user.password ? <Icon as={MdError} w={5} h={5} /> : user.password}</Td>
-                                </Tr>
+                                    {user.map((row, index) => {
+                                        return (
+                                            <Tr key={index}>
+                                            <Td>{row.name}</Td>
+                                            <Td>{row.email}</Td>
+                                            <Td>{row.profession}</Td>
+                                            <Td>{row.password}</Td>
+                                            </Tr>
+                                        )
+                                    })}
                             </Tbody>
                         </Table>
                     </TableContainer>
