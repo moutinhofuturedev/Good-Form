@@ -1,10 +1,11 @@
 // --------> post typing <--------
 export interface FormData {
     name: string
-    email: string;
-    password: string;
+    email: string
+    password: string
     privacyTerms: boolean
-    profession: string;
+    profession: string
+    createdAt: string
 }
 
 // --------> get typing <--------
@@ -14,4 +15,5 @@ export interface ListProps {
     email: string 
     password: string 
     profession: string 
+    createdAt: string
 }
