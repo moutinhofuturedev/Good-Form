@@ -23,7 +23,7 @@ import { MdNavigateNext, MdError } from "react-icons/md";
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
 
-export default function List(item: any) {
+export default function List() {
     const [user, setUser] = useState<ListProps[]>([])
  
      async function loadList() {
@@ -69,7 +69,7 @@ export default function List(item: any) {
                                     <Th>Nome</Th>
                                     <Th>E-mail</Th>
                                     <Th>Profissão</Th>
-                                    <Th>Senha</Th>
+                                    <Th>Data de criação</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
@@ -79,7 +79,7 @@ export default function List(item: any) {
                                             <Td>{!row.name ? <Icon as={MdError}/> : row.name}</Td>
                                             <Td>{!row.email ? <Icon as={MdError}/> : row.email}</Td>
                                             <Td>{!row.profession ? <Icon as={MdError}/> : row.profession}</Td>
-                                            <Td>{!row.password ? <Icon as={MdError}/> : row.password}</Td>
+                                            <Td>{!row.createdAt ? <Icon as={MdError}/> : row.createdAt}</Td>
                                         </Tr>
                                     )
                                 })}

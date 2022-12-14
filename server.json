@@ -6,31 +6,8 @@
       "password": "Lau&Duda2023",
       "privacyTerms": true,
       "profession": "Desenvolvedor",
+      "createdAt": "14/12/2022 - 00:59:08",
       "id": 1
-    },
-    {
-      "name": "Priscila Oliveira",
-      "email": "priscilacardio@hotmail.com",
-      "password": "llllllllllll",
-      "privacyTerms": true,
-      "profession": "QA",
-      "id": 2
-    },
-    {
-      "name": "Renan Oliveira",
-      "email": "renan_vicali@icloud.com.br",
-      "password": "Jujuba$Molina",
-      "privacyTerms": true,
-      "profession": "Outros",
-      "id": 3
-    },
-    {
-      "name": "Igor Achete Novaes",
-      "email": "igornovaes_@gmail.com.br",
-      "password": "pelicano_doido",
-      "privacyTerms": true,
-      "profession": "Agilista",
-      "id": 4
     }
   ]
 }
