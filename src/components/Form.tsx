@@ -1,4 +1,4 @@
-import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Text, VStack } from "@chakra-ui/react";
+import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { FormData } from "../types/type";
 import { useToast } from '@chakra-ui/react'
@@ -12,13 +12,21 @@ export function Form() {
 
     const OnSubmit = async (data: FormData) => {
         await new Promise(resolve => setTimeout(() => {
+          let createdAt = () => {
+            const date = new Date()
+            const getDate = date.toLocaleDateString()
+            const getTime = date.toLocaleDateString()
+
+            return `${getDate} - ${getTime}`
+          }
             resolve(
                 api.post('form', {
                     name: data.name,
                     email: data.email,
                     password: data.password,
                     privacyTerms: data.privacyTerms,
-                    profession: data.profession
+                    profession: data.profession,
+                    createdAt: createdAt()
                 })
             )
         }, 5000))
