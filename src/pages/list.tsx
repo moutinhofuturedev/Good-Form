@@ -30,9 +30,7 @@ export default function List(item: any) {
        const response = await api.get<ListProps[]>('/form')
        const data = response.data
 
-       setTimeout(() => {
-        setUser(data)
-       }, 3000)
+       setUser(data)
      }
 
      useEffect(() => {
