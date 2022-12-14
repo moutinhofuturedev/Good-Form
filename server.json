@@ -6,8 +6,26 @@
       "password": "Lau&Duda2023",
       "privacyTerms": true,
       "profession": "Desenvolvedor",
-      "createdAt": "14/12/2022 - 00:59:08",
+      "createdAt": "14/12/2022 - 11:08",
       "id": 1
+    },
+    {
+      "name": "Renan Oliveira",
+      "email": "renanoliveira@gmail.com",
+      "password": "macarrao/queijo",
+      "privacyTerms": true,
+      "profession": "Agilista",
+      "createdAt": "14/12/2022 - 11:11",
+      "id": 2
+    },
+    {
+      "name": "Viviane Gonçalves",
+      "email": "vivi_gonza@hotmail.com.br",
+      "password": "pernambucao_maresia",
+      "privacyTerms": true,
+      "profession": "Agilista",
+      "createdAt": "14/12/2022 - 11:29",
+      "id": 3
     }
   ]
 }

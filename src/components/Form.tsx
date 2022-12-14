@@ -4,6 +4,7 @@ import { FormData } from "../types/type";
 import { useToast } from '@chakra-ui/react'
 import { useRouter } from "next/router";
 import { api } from "../api/api";
+import { createdAt } from '../utils/showDate';
 
 export function Form() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>()
@@ -12,13 +13,7 @@ export function Form() {
 
     const OnSubmit = async (data: FormData) => {
         await new Promise(resolve => setTimeout(() => {
-          let createdAt = () => {
-            const date = new Date()
-            const getDate = date.toLocaleDateString()
-            const getTime = date.toLocaleDateString()
-
-            return `${getDate} - ${getTime}`
-          }
+          createdAt()
             resolve(
                 api.post('form', {
                     name: data.name,
