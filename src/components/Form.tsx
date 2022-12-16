@@ -12,29 +12,40 @@ export function Form() {
     const router = useRouter()
 
     const OnSubmit = async (data: FormData) => {
-        await new Promise(resolve => setTimeout(() => {
-          createdAt()
-            resolve(
-                api.post('form', {
-                    name: data.name,
-                    email: data.email,
-                    password: data.password,
-                    privacyTerms: data.privacyTerms,
-                    profession: data.profession,
-                    createdAt: createdAt()
-                })
-            )
-        }, 5000))
-        toast({
-          title: 'Conta criada.',
-          description: "Cadastro realizado com sucesso.",
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-          position:  "top-left"
-        })
-
-        router.push("/list")
+        try {
+          await new Promise(resolve => setTimeout(() => {
+            createdAt()
+              resolve(
+                  api.post('form', {
+                      name: data.name,
+                      email: data.email,
+                      password: data.password,
+                      privacyTerms: data.privacyTerms,
+                      profession: data.profession,
+                      createdAt: createdAt()
+                  })
+              )
+          }, 5000))
+          toast({
+            title: 'Conta criada.',
+            description: "Cadastro realizado com sucesso.",
+            status: 'success',
+            duration: 8000,
+            isClosable: true,
+            position:  "top-left"
+          })
+  
+          router.push("/list")
+        } catch (error) {
+          toast({
+            title: 'Erro de cadastro',
+            status: "error",
+            description: 'Não foi possível fazer novo registro',
+            duration: 6000,
+            isClosable: true,
+            position: "top-left"
+          })
+        }
     }
 
     return (

@@ -26,6 +26,15 @@
       "profession": "Agilista",
       "createdAt": "14/12/2022 - 11:29",
       "id": 3
+    },
+    {
+      "name": "Priscila Oliveira",
+      "email": "priscila@hotmail.com",
+      "password": "POLeaderSquad",
+      "privacyTerms": true,
+      "profession": "Outros",
+      "createdAt": "16/12/2022 - 07:37",
+      "id": 4
     }
   ]
 }
