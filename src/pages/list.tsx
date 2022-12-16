@@ -39,9 +39,9 @@ export default function List() {
             title: 'Não há dados',
             description: 'Erro ao tentar buscar registros',
             status: 'error',
-            duration: 6000,
+            duration: 7000,
             isClosable: true,
-            position:  "top-left"
+            position:  "top-right"
         })
        }
      }
