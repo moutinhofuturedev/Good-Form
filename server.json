@@ -35,6 +35,15 @@
       "profession": "Outros",
       "createdAt": "16/12/2022 - 07:37",
       "id": 4
+    },
+    {
+      "name": "Sala de React",
+      "email": "DevPaulo",
+      "password": "mnmnmnmnmnmnmnmnmn",
+      "privacyTerms": true,
+      "profession": "Outros",
+      "createdAt": "16/12/2022 - 08:35",
+      "id": 5
     }
   ]
 }
