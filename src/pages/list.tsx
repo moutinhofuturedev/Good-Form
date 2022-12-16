@@ -37,7 +37,7 @@ export default function List() {
        } catch (error) {
         toast({
             title: 'Não há dados',
-            description: 'Erro ao tentar buscar dados',
+            description: 'Erro ao tentar buscar registros',
             status: 'error',
             duration: 6000,
             isClosable: true,
