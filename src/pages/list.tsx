@@ -16,6 +16,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Icon,
+  useToast,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -25,12 +26,24 @@ import { ListProps } from "../types/type";
 
 export default function List() {
     const [user, setUser] = useState<ListProps[]>([])
+    const toast = useToast()
  
      async function loadList() {
-       const response = await api.get<ListProps[]>('/form')
-       const data = response.data
+       try {
+        const response = await api.get<ListProps[]>('/form')
+        const data = response.data
 
-       setUser(data)
+        setUser(data)
+       } catch (error) {
+        toast({
+            title: 'Não há dados',
+            description: 'Erro ao tentar buscar dados',
+            status: 'error',
+            duration: 6000,
+            isClosable: true,
+            position:  "top-left"
+        })
+       }
      }
 
      useEffect(() => {
