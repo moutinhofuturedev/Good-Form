@@ -16,7 +16,7 @@ export function Form() {
           await new Promise(resolve => setTimeout(() => {
             createdAt()
               resolve(
-                  api.post('form', {
+                  api.post("/form", {
                       name: data.name,
                       email: data.email,
                       password: data.password,

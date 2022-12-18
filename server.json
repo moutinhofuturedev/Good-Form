@@ -10,40 +10,22 @@
       "id": 1
     },
     {
-      "name": "Renan Oliveira",
-      "email": "renanoliveira@gmail.com",
-      "password": "macarrao/queijo",
+      "name": "Júlio Vertullo",
+      "email": "vertullo_bispoj@hotmail.com",
+      "password": "igrejacristamundial",
       "privacyTerms": true,
-      "profession": "Agilista",
-      "createdAt": "14/12/2022 - 11:11",
+      "profession": "Outros",
+      "createdAt": "18/12/2022 - 10:37",
       "id": 2
     },
     {
-      "name": "Viviane Gonçalves",
-      "email": "vivi_gonza@hotmail.com.br",
-      "password": "pernambucao_maresia",
+      "name": "Renan Oliveira",
+      "email": "renan_vicali@icloud.com",
+      "password": "tecido_hospitalar",
       "privacyTerms": true,
-      "profession": "Agilista",
-      "createdAt": "14/12/2022 - 11:29",
+      "profession": "QA",
+      "createdAt": "18/12/2022 - 10:56",
       "id": 3
-    },
-    {
-      "name": "Priscila Oliveira",
-      "email": "priscila@hotmail.com",
-      "password": "POLeaderSquad",
-      "privacyTerms": true,
-      "profession": "Outros",
-      "createdAt": "16/12/2022 - 07:37",
-      "id": 4
-    },
-    {
-      "name": "Sala de React",
-      "email": "DevPaulo",
-      "password": "mnmnmnmnmnmnmnmnmn",
-      "privacyTerms": true,
-      "profession": "Outros",
-      "createdAt": "16/12/2022 - 08:35",
-      "id": 5
     }
   ]
 }
