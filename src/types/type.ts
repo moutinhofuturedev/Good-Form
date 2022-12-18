@@ -16,4 +16,5 @@ export interface ListProps {
     password: string 
     profession: string 
     createdAt: string
+    id: number
 }
