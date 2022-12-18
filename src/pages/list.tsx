@@ -34,8 +34,8 @@ export default function List() {
     const toast = useToast();
     const router = useRouter();
 
-    const handleGoToUpdatePage = (id: number) => {
-        router.push(`${id}/update`)
+    const handleGoToUpdatePage = async (id: number) => {
+        await router.push(`${id}/update`)
     }
 
     async function loadList() {
