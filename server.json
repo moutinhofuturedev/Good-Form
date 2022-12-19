@@ -6,26 +6,17 @@
       "password": "Lau&Duda2023",
       "privacyTerms": true,
       "profession": "Desenvolvedor",
-      "createdAt": "14/12/2022 - 11:08",
+      "createdAt": "19/12/2022 - 11:40",
       "id": 1
-    },
-    {
-      "name": "Júlio Vertullo",
-      "email": "vertullo_bispoj@hotmail.com",
-      "password": "igrejacristamundial",
-      "privacyTerms": true,
-      "profession": "Outros",
-      "createdAt": "18/12/2022 - 10:37",
-      "id": 2
     },
     {
       "name": "Renan Oliveira",
       "email": "renan_vicali@icloud.com",
-      "password": "tecido_hospitalar",
+      "password": "1234567890",
       "privacyTerms": true,
       "profession": "QA",
-      "createdAt": "18/12/2022 - 10:56",
-      "id": 3
+      "createdAt": "19/12/2022 - 11:47",
+      "id": 2
     }
   ]
 }
