@@ -113,6 +113,9 @@ export function Form() {
             <option value="Desenvolvedor">Desenvolvedor</option>
             <option value="Agilista">Agilista</option>
             <option value="QA">QA</option>
+            <option value="Product Ower">Product Ower</option>
+            <option value="Tech Leader">Tech Leader</option>
+            <option value="Analista SEO">Analista SEO</option>
             <option value="Outros">Outros</option>
           </Select>
           {errors.profession?.type === "validate" && (
