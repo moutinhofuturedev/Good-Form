@@ -10,22 +10,13 @@
       "id": 1
     },
     {
-      "name": "Paulo Moutinho",
-      "email": "paulo.vitor@viavarejo.com.br",
-      "password": "Lau&Duda2023",
+      "name": "Paulo Moutinho Vitor",
+      "email": "paulo_vicali@icloud.com",
+      "password": "Lau&Duda2020",
       "privacyTerms": true,
       "profession": "Desenvolvedor",
-      "createdAt": "19/12/2022 - 15:31",
+      "createdAt": "19/12/2022 - 16:14",
       "id": 2
-    },
-    {
-      "name": "Rogério Denis",
-      "email": "rogerio.vitor@viavarejo.com.br",
-      "password": "1234567890",
-      "privacyTerms": true,
-      "profession": "Analista SEO",
-      "createdAt": "19/12/2022 - 15:31",
-      "id": 3
     }
   ]
 }
