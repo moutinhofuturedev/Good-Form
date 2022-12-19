@@ -21,6 +21,15 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  ModalOverlay,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Button,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -28,14 +37,33 @@ import { MdNavigateNext, MdError, MdMoreHoriz } from "react-icons/md";
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
 import { useRouter } from "next/router";
+import { on } from "stream";
 
 export default function List() {
     const [user, setUser] = useState<ListProps[]>([]);
     const toast = useToast();
     const router = useRouter();
 
+// --------> Area Overlay <--------
+    const OverlayTwo = () => (
+        <ModalOverlay
+          bg='none'
+          backdropFilter='auto'
+          backdropInvert='80%'
+          backdropBlur='2px'
+        />
+      )
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [overlay, setOverlay] = useState(<OverlayTwo />)
+
     const handleGoToUpdatePage = async (id: number) => {
         await router.push(`${id}/update`)
+    }
+
+    const handleDeleteData = async (id: number) => {
+        await api.delete(`form/${id}`)
+
+        router.push('/')
     }
 
     async function loadList() {
@@ -59,6 +87,7 @@ export default function List() {
     useEffect(() => {
       loadList();
     }, []);
+
 
     return(
         <Box h="100vh">
@@ -127,9 +156,26 @@ export default function List() {
                                                         <MenuItem
                                                           bg="gray.700" 
                                                           _hover={{ bg: "gray.500"}}
+                                                          onClick={() => {
+                                                            setOverlay(<OverlayTwo />)
+                                                            onOpen()
+                                                          }}
                                                         >
                                                             Deletar
                                                         </MenuItem>
+                                                        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+                                                            {overlay}
+                                                            <ModalContent>
+                                                                <ModalHeader>Atenção</ModalHeader>
+                                                                <ModalCloseButton />
+                                                                <ModalBody>
+                                                                    <Text>Tem certeza que deseja deletar este registro?</Text>
+                                                                </ModalBody>
+                                                                <ModalFooter>
+                                                                    <Button onClick={() => handleDeleteData(row.id)}>Deletar</Button>
+                                                                </ModalFooter>
+                                                            </ModalContent>
+                                                        </Modal>
                                                     </MenuList>
                                                 </Menu>
                                             </Td>
