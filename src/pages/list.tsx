@@ -63,6 +63,13 @@ export default function List() {
         await api.delete(`form/${id}`)
 
         router.push('/')
+        toast({
+            title: "Registro removido",
+            status: "success",
+            duration: 6000,
+            position: "top-left",
+            isClosable: true
+        })
     }
 
     async function loadList() {
@@ -212,7 +219,7 @@ export default function List() {
                                   <ModalCloseButton />
                                   <ModalBody>
                                     <Text>
-                                      Tem certeza que deseja deletar este
+                                      Tem certeza que deseja remover este
                                       registro?
                                     </Text>
                                   </ModalBody>
