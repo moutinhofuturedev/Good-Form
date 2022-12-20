@@ -60,6 +60,7 @@ export default function List() {
     }
 
     const handleDeleteData = async (id: number) => {
+       try {
         await api.delete(`form/${id}`)
 
         router.push('/')
@@ -70,6 +71,9 @@ export default function List() {
             position: "top-left",
             isClosable: true
         })
+       } catch (error) {
+        console.log(error)
+       }
     }
 
     async function loadList() {
