@@ -3,19 +3,19 @@
     {
       "name": "Igor Achete",
       "email": "i.achette@live.com",
-      "password": "souviavarejodev",
+      "password": "devsuperior1234",
       "privacyTerms": true,
       "profession": "Desenvolvedor",
-      "createdAt": "19/12/2022 - 15:14",
+      "createdAt": "20/12/2022 - 12:32",
       "id": 1
     },
     {
-      "name": "Paulo Moutinho Vitor",
-      "email": "paulo_vicali@icloud.com",
-      "password": "Lau&Duda2020",
+      "name": "Rogério Denis",
+      "email": "rogerio.vitor@viavarejo.com.br",
+      "password": "1234567890",
       "privacyTerms": true,
-      "profession": "Desenvolvedor",
-      "createdAt": "19/12/2022 - 16:14",
+      "profession": "Analista SEO",
+      "createdAt": "20/12/2022 - 12:33",
       "id": 2
     }
   ]
