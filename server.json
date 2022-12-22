@@ -8,15 +8,6 @@
       "profession": "Desenvolvedor",
       "createdAt": "20/12/2022 - 12:32",
       "id": 1
-    },
-    {
-      "name": "Rogério Denis",
-      "email": "rogerio.vitor@viavarejo.com.br",
-      "password": "1234567890",
-      "privacyTerms": true,
-      "profession": "Analista SEO",
-      "createdAt": "20/12/2022 - 12:33",
-      "id": 2
     }
   ]
 }

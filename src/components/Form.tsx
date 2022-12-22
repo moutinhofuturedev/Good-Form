@@ -30,7 +30,7 @@ export function Form() {
             title: 'Conta criada.',
             description: "Cadastro realizado com sucesso.",
             status: 'success',
-            duration: 8000,
+            duration: 7000,
             isClosable: true,
             position:  "top-left"
           })
