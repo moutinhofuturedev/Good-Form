@@ -1,5 +1,5 @@
 import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Text } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { FormData } from "../types/type";
 import { useToast } from '@chakra-ui/react'
 import { useRouter } from "next/router";
@@ -11,7 +11,7 @@ export function Form() {
     const toast = useToast()
     const router = useRouter()
 
-    const OnSubmit = async (data: FormData) => {
+    const OnSubmit: SubmitHandler<FormData> = async (data) => {
         try {
           await new Promise(resolve => setTimeout(() => {
             createdAt()
