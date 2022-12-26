@@ -17,6 +17,15 @@
       "profession": "Agilista",
       "createdAt": "24/12/2022 - 19:28",
       "id": 2
+    },
+    {
+      "name": "Paulo Moutinho",
+      "email": "paulo.vitor@viavarejo.com.br",
+      "password": "Lau&Duda082020",
+      "privacyTerms": true,
+      "profession": "Desenvolvedor",
+      "createdAt": "26/12/2022 - 18:46",
+      "id": 3
     }
   ]
 }

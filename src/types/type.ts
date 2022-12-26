@@ -12,8 +12,7 @@ export interface FormData {
 
 export interface ListProps {
     name: string 
-    email: string 
-    password: string 
+    email: string  
     profession: string 
     createdAt: string
     id: number
