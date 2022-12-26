@@ -88,7 +88,7 @@ export default function List() {
           title: "Não há dados",
           description: "Erro ao tentar buscar registros",
           status: "error",
-          duration: 7000,
+          duration: 6000,
           isClosable: true,
           position: "top-right",
         });
