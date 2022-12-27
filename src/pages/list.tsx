@@ -57,7 +57,7 @@ export default function List() {
     const [overlay, setOverlay] = useState(<OverlayTwo />)
 
     const handleGoToUpdatePage = async (id: number) => {
-        await router.push(`${id}/update`)
+        await router.push(`update/${id}`)
     }
 
     const handleDeleteData = async (id: number) => {
@@ -113,7 +113,7 @@ export default function List() {
           separator={<MdNavigateNext color="gray.500" />}
         >
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dash">Formulário</BreadcrumbLink>
+            <BreadcrumbLink href="/">Formulário</BreadcrumbLink>
           </BreadcrumbItem>
 
           <BreadcrumbItem>
