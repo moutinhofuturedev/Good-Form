@@ -17,3 +17,12 @@ export interface ListProps {
     createdAt: string
     id: number
 }
+
+// --------> patch typing <--------
+export interface UpdateProps {
+    name: string
+    email: string
+    password: string
+    profession: string
+    id: number
+}
