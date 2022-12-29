@@ -3,9 +3,10 @@ export interface FormData {
     name: string
     email: string
     password: string
-    privacyTerms: boolean
+    privacyTerms?: boolean
     profession: string
-    createdAt: string
+    createdAt?: string
+    updatedAt?: string
 }
 
 // --------> get typing <--------
@@ -15,6 +16,7 @@ export interface ListProps {
     email: string  
     profession: string 
     createdAt: string
+    updatedAt: string
     id: number
 }
 
