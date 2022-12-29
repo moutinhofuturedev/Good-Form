@@ -150,13 +150,14 @@ export default function List() {
             minW="620px"
           >
             <TableContainer>
-              <Table size="md">
+              <Table size="sm">
                 <Thead>
                   <Tr>
                     <Th>Nome</Th>
                     <Th>E-mail</Th>
                     <Th>Profissão</Th>
                     <Th>Data de criação</Th>
+                    <Th>Data de alteração</Th>
                     <Th>Ações</Th>
                   </Tr>
                 </Thead>
@@ -180,6 +181,13 @@ export default function List() {
                             <Icon as={MdError} />
                           ) : (
                             row.createdAt
+                          )}
+                        </Td>
+                        <Td>
+                          {!row.updatedAt ? (
+                            <Icon as={MdError} />
+                          ) : (
+                            row.updatedAt
                           )}
                         </Td>
                         <Td width="1px">
