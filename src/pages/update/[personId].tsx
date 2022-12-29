@@ -1,14 +1,15 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Center, Flex, FormControl, FormLabel, HStack, Heading, Input, Select } from "@chakra-ui/react";
 import Head from "next/head";
-import { UpdateProps } from "../../types/type";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { UpdateProps, FormData } from "../../types/type";
 import { api } from "../../api/api";
 import { MdNavigateNext } from "react-icons/md";
+import { createdAt as updatedAt } from "../../utils/showDate";
+import { useRouter } from "next/router";
 
 export async function getStaticProps(contex: any) {
   const { params } = contex;
-
   const data = await api.get(`http://localhost:3333/form/${params.personId}`);
-
   const person = data.data
 
   return {
@@ -18,7 +19,6 @@ export async function getStaticProps(contex: any) {
 
 export async function getStaticPaths() {
   const response = await api.get("http://localhost:3333/form");
-
   const data = response.data
 
   const paths = data.map((person: UpdateProps) => {
@@ -37,6 +37,31 @@ type updatePersonId = {
 };
 
 export default function UpdatePerson({ person }: updatePersonId) {
+  const { register, handleSubmit } = useForm<FormData>();
+  const router = useRouter();
+
+  const OnSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          updatedAt();
+          resolve(
+            api.patch(`/form/${person.id}`, {
+              name: data.name,
+              email: data.email,
+              password: data.password,
+              profession: data.profession,
+              createdAt: data.createdAt,
+              updatedAt: updatedAt(),
+            })
+          );
+        }, 2000)
+      );
+      router.push("/list");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Box>
       <Head>
@@ -79,6 +104,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
             id="name"
             placeholder="Seu nome"
             defaultValue={person.name}
+            {...register("name")}
           />
 
           <FormLabel mt="1rem">E-mail</FormLabel>
@@ -87,6 +113,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
             id="email"
             placeholder="Seu e-mail"
             defaultValue={person.email}
+            {...register("email")}
           />
 
           <FormLabel mt="1rem">Senha</FormLabel>
@@ -95,11 +122,12 @@ export default function UpdatePerson({ person }: updatePersonId) {
             id="password"
             placeholder="Sua senha"
             defaultValue={person.password}
+            {...register("password")}
           />
 
           <FormLabel mt="1rem">Profissões</FormLabel>
-          <Select defaultValue="0">
-            <option value="0">{person.profession}</option>
+          <Select defaultValue="0" {...register("profession")}>
+            <option value={person.profession}>{person.profession}</option>
             <option value="Desenvolvedor">Desenvolvedor</option>
             <option value="Agilista">Agilista</option>
             <option value="QA">QA</option>
@@ -110,7 +138,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
           </Select>
 
           <Center mt="1.5rem">
-            <Button colorScheme="blue" w="100%">
+            <Button colorScheme="blue" w="100%" onClick={() => handleSubmit(OnSubmit)()}>
               Atualizar
             </Button>
           </Center>
