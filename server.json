@@ -5,9 +5,10 @@
       "email": "i.achette@live.com",
       "password": "devsuperior1234",
       "privacyTerms": true,
-      "profession": "Desenvolvedor",
+      "profession": "Tech Leader",
       "createdAt": "20/12/2022 - 12:32",
-      "id": 1
+      "id": 1,
+      "updatedAt": "28/12/2022 - 21:03"
     },
     {
       "name": "Viviane Gonçalves",
@@ -20,12 +21,13 @@
     },
     {
       "name": "Paulo Moutinho",
-      "email": "paulo.vitor@viavarejo.com.br",
-      "password": "Lau&Duda082020",
+      "email": "paulo_vicali@icloud.com",
+      "password": "Lau&Duda2020",
       "privacyTerms": true,
       "profession": "Desenvolvedor",
-      "createdAt": "26/12/2022 - 18:46",
-      "id": 3
+      "createdAt": "28/12/2022 - 20:03",
+      "id": 3,
+      "updatedAt": "28/12/2022 - 20:15"
     }
   ]
 }
