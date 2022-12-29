@@ -1,4 +1,4 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Center, Flex, FormControl, FormLabel, HStack, Heading, Input, Select } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { UpdateProps, FormData } from "../../types/type";
@@ -37,7 +37,8 @@ type updatePersonId = {
 };
 
 export default function UpdatePerson({ person }: updatePersonId) {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm<FormData>();
+  const toast = useToast();
   const router = useRouter();
 
   const OnSubmit: SubmitHandler<FormData> = async (data) => {
@@ -55,8 +56,17 @@ export default function UpdatePerson({ person }: updatePersonId) {
               updatedAt: updatedAt(),
             })
           );
-        }, 2000)
+        }, 5000)
       );
+      toast({
+        title: "Registro alterado.",
+        description: "Atualização feita com sucesso.",
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+        position: "top-left",
+      });
+
       router.push("/list");
     } catch (error) {
       console.log(error);
@@ -95,7 +105,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
         px="2rem"
       >
         <Heading as="h2" mb="2rem" fontSize={["lg", "2xl"]}>
-          Editar Formulário 
+          Editar Formulário
         </Heading>
         <FormControl maxWidth="20rem">
           <FormLabel>Name</FormLabel>
@@ -138,7 +148,12 @@ export default function UpdatePerson({ person }: updatePersonId) {
           </Select>
 
           <Center mt="1.5rem">
-            <Button colorScheme="blue" w="100%" onClick={() => handleSubmit(OnSubmit)()}>
+            <Button
+              colorScheme="blue"
+              w="100%"
+              onClick={() => handleSubmit(OnSubmit)()}
+              isLoading={isSubmitting}
+            >
               Atualizar
             </Button>
           </Center>
