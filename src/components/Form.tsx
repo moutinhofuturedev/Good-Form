@@ -33,8 +33,8 @@ export function Form() {
         }, 5000)
       );
       toast({
-        title: "Conta criada.",
-        description: "Cadastro realizado com sucesso.",
+        title: "Registrado.",
+        description: "Registro realizado com sucesso.",
         status: "success",
         duration: 6000,
         isClosable: true,
@@ -151,7 +151,7 @@ export function Form() {
             onClick={() => handleSubmit(OnSubmit)()}
             isLoading={isSubmitting}
           >
-            Criar conta
+            Registrar
           </Button>
         </Center>
       </FormControl>
