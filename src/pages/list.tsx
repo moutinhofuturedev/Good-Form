@@ -165,27 +165,21 @@ export default function List() {
                   {user.map((row: ListProps, index) => {
                     return (
                       <Tr key={index}>
-                        <Td>{!row.name ? <Icon as={MdError} /> : row.name}</Td>
                         <Td>
-                          {!row.email ? <Icon as={MdError} /> : row.email}
+                          {`${index + 1}⍛ ${row.name}`}
                         </Td>
                         <Td>
-                          {!row.profession ? (
-                            <Icon as={MdError} />
-                          ) : (
-                            row.profession
-                          )}
+                          {row.email}
                         </Td>
                         <Td>
-                          {!row.createdAt ? (
-                            <Icon as={MdError} />
-                          ) : (
-                            row.createdAt
-                          )}
+                         {row.profession}
+                        </Td>
+                        <Td>
+                          {row.createdAt}
                         </Td>
                         <Td>
                           {!row.updatedAt ? (
-                            <Icon as={MdError} />
+                            <Icon as={MdError} fontSize={25} title="Não há alteração"/>
                           ) : (
                             row.updatedAt
                           )}
@@ -214,10 +208,11 @@ export default function List() {
                               <MenuItem
                                 bg="gray.700"
                                 _hover={{ bg: "gray.500" }}
-                                onClick={() => {
-                                  setOverlay(<OverlayTwo />);
-                                  onOpen();
-                                }}
+                                // onClick={() => {
+                                //   setOverlay(<OverlayTwo />);
+                                //   onOpen();
+                                // }}
+                                onClick={() => handleDeleteData(row.id)}
                               >
                                 Deletar
                               </MenuItem>
@@ -237,9 +232,15 @@ export default function List() {
                                     </Text>
                                   </ModalBody>
                                   <ModalFooter>
-                                    <Button onClick={onClose} mr="2rem" colorScheme="blue">Cancelar</Button>
                                     <Button
-                                      onClick={() => handleDeleteData(row.id)}
+                                      onClick={onClose}
+                                      mr="2rem"
+                                      colorScheme="blue"
+                                    >
+                                      Cancelar
+                                    </Button>
+                                    <Button
+                                      // onClick={() => handleDeleteData(row.id)}
                                       colorScheme="red"
                                     >
                                       Deletar
