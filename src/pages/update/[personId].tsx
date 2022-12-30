@@ -29,7 +29,7 @@ export async function getStaticPaths() {
     };
   });
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 type updatePersonId = {
@@ -105,7 +105,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
         px="2rem"
       >
         <Heading as="h2" mb="2rem" fontSize={["lg", "2xl"]}>
-          Editar Formulário
+          Editar {person.name}
         </Heading>
         <FormControl maxWidth="20rem">
           <FormLabel>Name</FormLabel>
