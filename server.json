@@ -25,10 +25,19 @@
       "email": "paulovicali@gmail.com",
       "password": "Lau&Duda2020",
       "privacyTerms": true,
-      "profession": "Tech Leader",
+      "profession": "Desenvolvedor",
       "createdAt": "28/12/2022 - 20:03",
       "id": 3,
-      "updatedAt": "30/12/2022 - 13:53"
+      "updatedAt": "01/01/2023 - 21:57"
+    },
+    {
+      "name": "Renan Oliveira",
+      "email": "renan_vicali@icloud.com",
+      "password": "#foralula2023",
+      "privacyTerms": true,
+      "profession": "Analista SEO",
+      "createdAt": "01/01/2023 - 21:58",
+      "id": 4
     }
   ]
 }
