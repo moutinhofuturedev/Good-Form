@@ -31,10 +31,13 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Center,
+  Tooltip,
 } from "@chakra-ui/react";
+import InfoIcon from "@chakra-ui/icon";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { MdNavigateNext, MdError, MdMoreHoriz } from "react-icons/md";
+import { MdNavigateNext, MdMoreHoriz } from "react-icons/md";
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
 import { useRouter } from "next/router";
@@ -165,21 +168,22 @@ export default function List() {
                   {user.map((row: ListProps, index) => {
                     return (
                       <Tr key={index}>
-                        <Td>
-                          {`${index + 1}⍛ ${row.name}`}
-                        </Td>
-                        <Td>
-                          {row.email}
-                        </Td>
-                        <Td>
-                         {row.profession}
-                        </Td>
-                        <Td>
-                          {row.createdAt}
-                        </Td>
+                        <Td>{`${index + 1}⍛ ${row.name}`}</Td>
+                        <Td>{row.email}</Td>
+                        <Td>{row.profession}</Td>
+                        <Td>{row.createdAt}</Td>
                         <Td>
                           {!row.updatedAt ? (
-                            <Icon as={MdError} fontSize={25} title="Não há alteração"/>
+                            <Center>
+                              <Tooltip
+                                hasArrow
+                                label="Não há alterações"
+                                placement="top"
+                                bg="blue.200"
+                              >
+                                <InfoIcon boxSize={5} />
+                              </Tooltip>
+                            </Center>
                           ) : (
                             row.updatedAt
                           )}
