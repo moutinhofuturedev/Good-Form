@@ -179,7 +179,7 @@ export default function List() {
                                 hasArrow
                                 label="Não há alterações"
                                 placement="top"
-                                bg="blue.200"
+                                bg="blue.500"
                               >
                                 <InfoIcon boxSize={5} />
                               </Tooltip>
