@@ -1,15 +1,15 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UpdateProps, FormData } from "../../types/type";
+import { UpdateProps, FormData, updatePersonId } from "../../types/type";
 import { api } from "../../api/api";
 import { MdNavigateNext } from "react-icons/md";
 import { createdAt as updatedAt } from "../../utils/showDate";
 import { useRouter } from "next/router";
 
-export async function getStaticProps(contex: any) {
-  const { params } = contex;
-  const data = await api.get(`http://localhost:3333/form/${params.personId}`);
+export async function getStaticProps(context: any) {
+  const { params } = context;
+  const data = await api.get<FormData>(`http://localhost:3333/form/${params.personId}`);
   const person = data.data
 
   return {
@@ -18,10 +18,10 @@ export async function getStaticProps(contex: any) {
 }
 
 export async function getStaticPaths() {
-  const response = await api.get("http://localhost:3333/form");
+  const response = await api.get<UpdateProps[]>("http://localhost:3333/form");
   const data = response.data
 
-  const paths = data.map((person: UpdateProps) => {
+  const paths = data.map((person) => {
     return {
       params: {
         personId: `${person.id}`,
@@ -31,10 +31,6 @@ export async function getStaticPaths() {
 
   return { paths, fallback: true };
 }
-
-type updatePersonId = {
-  person: UpdateProps;
-};
 
 export default function UpdatePerson({ person }: updatePersonId) {
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<FormData>();
