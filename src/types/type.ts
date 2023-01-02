@@ -28,3 +28,8 @@ export interface UpdateProps {
     profession: string
     id: number
 }
+
+// --------> page typing <--------
+export interface updatePersonId  {
+    person: UpdateProps;
+};
