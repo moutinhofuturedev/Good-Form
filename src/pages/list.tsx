@@ -104,7 +104,7 @@ export default function List() {
 
 
     return (
-      <Box h="100vh">
+      <Box>
         <Head>
           <title>Form | Listagem</title>
         </Head>
@@ -141,7 +141,14 @@ export default function List() {
                 Veja aqui a lista de pessoas cadastradas.
               </Text>
             </Container>
-            <Button mt="2rem" colorScheme="blue" width="17.5rem" onClick={() => router.push("/dash")}>Novo Registro</Button>
+            <Button
+              mt="2rem"
+              colorScheme="blue"
+              width="17.5rem"
+              onClick={() => router.push("/dash")}
+            >
+              Novo Registro
+            </Button>
           </Flex>
           <Divider py="1rem" maxW="560px" />
           <Box
@@ -156,12 +163,20 @@ export default function List() {
               <Table size="sm">
                 <Thead>
                   <Tr>
-                    <Th>Nome</Th>
-                    <Th>E-mail</Th>
-                    <Th>Profissão</Th>
-                    <Th>Data de criação</Th>
-                    <Th>Data de alteração</Th>
-                    <Th>Ações</Th>
+                    {[
+                      "Nome",
+                      "E-mail",
+                      "Profissão",
+                      "Data de Criação",
+                      "Data de Alteração",
+                      "Ações",
+                    ].map((item, index) => {
+                      return (
+                        <Td key={index} color="gray.500" fontWeight="medium">
+                          {item.toUpperCase()}
+                        </Td>
+                      );
+                    })}
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -206,7 +221,7 @@ export default function List() {
                                 bg="gray.700"
                                 _hover={{ bg: "gray.500" }}
                                 onClick={() => handleGoToUpdatePage(row.id)}
-                                icon={<MdUpdate size={20}/>}
+                                icon={<MdUpdate size={20} />}
                                 fontWeight="bold"
                                 fontSize="md"
                               >
@@ -220,7 +235,7 @@ export default function List() {
                                 //   onOpen();
                                 // }}
                                 onClick={() => handleDeleteData(row.id)}
-                                icon={<MdDeleteOutline size={20}/>}
+                                icon={<MdDeleteOutline size={20} />}
                                 fontWeight="bold"
                                 fontSize="md"
                               >
