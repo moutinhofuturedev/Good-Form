@@ -37,7 +37,7 @@ import {
 import InfoIcon from "@chakra-ui/icon";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { MdNavigateNext, MdMoreHoriz } from "react-icons/md";
+import { MdNavigateNext, MdMoreHoriz, MdDeleteOutline, MdUpdate } from "react-icons/md";
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
 import { useRouter } from "next/router";
@@ -206,6 +206,9 @@ export default function List() {
                                 bg="gray.700"
                                 _hover={{ bg: "gray.500" }}
                                 onClick={() => handleGoToUpdatePage(row.id)}
+                                icon={<MdUpdate size={20}/>}
+                                fontWeight="bold"
+                                fontSize="md"
                               >
                                 Editar
                               </MenuItem>
@@ -217,6 +220,9 @@ export default function List() {
                                 //   onOpen();
                                 // }}
                                 onClick={() => handleDeleteData(row.id)}
+                                icon={<MdDeleteOutline size={20}/>}
+                                fontWeight="bold"
+                                fontSize="md"
                               >
                                 Deletar
                               </MenuItem>
