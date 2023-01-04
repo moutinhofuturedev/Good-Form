@@ -8,7 +8,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Th,
   Thead,
   Tr,
   Flex,
@@ -22,14 +21,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  ModalOverlay,
-  useDisclosure,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
   Button,
   Center,
   Tooltip,
@@ -46,18 +37,6 @@ export default function List() {
     const [user, setUser] = useState<ListProps[]>([]);
     const toast = useToast();
     const router = useRouter();
-
-// --------> Area Overlay <--------
-    const OverlayTwo = () => (
-        <ModalOverlay
-          bg='none'
-          backdropFilter='auto'
-          backdropInvert='80%'
-          backdropBlur='2px'
-        />
-      )
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [overlay, setOverlay] = useState(<OverlayTwo />)
 
     const handleGoToUpdatePage = async (id: number) => {
         await router.push(`update/${id}`)
@@ -230,10 +209,6 @@ export default function List() {
                               <MenuItem
                                 bg="gray.700"
                                 _hover={{ bg: "gray.500" }}
-                                // onClick={() => {
-                                //   setOverlay(<OverlayTwo />);
-                                //   onOpen();
-                                // }}
                                 onClick={() => handleDeleteData(row.id)}
                                 icon={<MdDeleteOutline size={20} />}
                                 fontWeight="bold"
@@ -241,38 +216,6 @@ export default function List() {
                               >
                                 Deletar
                               </MenuItem>
-                              <Modal
-                                isCentered
-                                isOpen={isOpen}
-                                onClose={onClose}
-                              >
-                                {overlay}
-                                <ModalContent bg="blue.900">
-                                  <ModalHeader>Atenção</ModalHeader>
-                                  <ModalCloseButton />
-                                  <ModalBody>
-                                    <Text>
-                                      Tem certeza que deseja remover este
-                                      registro?
-                                    </Text>
-                                  </ModalBody>
-                                  <ModalFooter>
-                                    <Button
-                                      onClick={onClose}
-                                      mr="2rem"
-                                      colorScheme="blue"
-                                    >
-                                      Cancelar
-                                    </Button>
-                                    <Button
-                                      // onClick={() => handleDeleteData(row.id)}
-                                      colorScheme="red"
-                                    >
-                                      Deletar
-                                    </Button>
-                                  </ModalFooter>
-                                </ModalContent>
-                              </Modal>
                             </MenuList>
                           </Menu>
                         </Td>
