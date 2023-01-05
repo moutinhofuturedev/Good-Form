@@ -76,7 +76,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
     }
   };
   return (
-    <Box>
+    <Box h="100vh">
       <Head>
         <title>Form | Editar</title>
       </Head>
@@ -85,7 +85,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
         fontSize="sm"
         ml="1rem"
         mt="1rem"
-        mb="4rem"
+        mb="-2.5rem"
         separator={<MdNavigateNext color="gray.500" />}
       >
         <BreadcrumbItem>
@@ -108,7 +108,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
         px="2rem"
       >
         <Heading as="h2" mb="2rem" fontSize={["lg", "2xl"]}>
-          Editar {person.name}
+          Editar registro de {person.name}
         </Heading>
         <FormControl maxWidth="20rem">
           <FormLabel>Name</FormLabel>
