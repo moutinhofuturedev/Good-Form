@@ -55,7 +55,14 @@ export default function List() {
             isClosable: true
         })
        } catch (error) {
-        console.log(error)
+        toast({
+          title: "Error",
+          description: "Erro ao tentar remover registro.",
+          status: "error",
+          duration: 6000,
+          position: "top-left",
+          isClosable: true
+        })
        }
     }
 

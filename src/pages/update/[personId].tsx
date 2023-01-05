@@ -65,7 +65,14 @@ export default function UpdatePerson({ person }: updatePersonId) {
 
       router.push("/list");
     } catch (error) {
-      console.log(error);
+      toast({
+        title: "Error",
+        description: "Erro ao tentar atualizar registro",
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        position: "top-left",
+      })
     }
   };
   return (
