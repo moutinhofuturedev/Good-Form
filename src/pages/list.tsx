@@ -90,7 +90,7 @@ export default function List() {
 
 
     return (
-      <Box>
+      <Box h="100vh">
         <Head>
           <title>Form | Listagem</title>
         </Head>
