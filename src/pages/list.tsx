@@ -124,7 +124,7 @@ export default function List() {
                 Registros
               </Heading>
               <Text fontSize="sm">
-                Veja aqui a lista de pessoas cadastradas.
+                Veja aqui a lista de pessoas registradas.
               </Text>
             </Container>
             <Button
