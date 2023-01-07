@@ -1,17 +1,19 @@
-import { Button, Center, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Text } from "@chakra-ui/react";
+import { Button, Center, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Select, Text } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FormData } from "../types/type";
 import { useToast } from '@chakra-ui/react'
 import { useRouter } from "next/router";
 import { api } from "../api/api";
 import { createdAt } from '../utils/showDate';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FormCreateSchema } from "../validation/FormSchemaValidation";
 
 export function Form() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>();
+  } = useForm<FormData>({ resolver: yupResolver(FormCreateSchema) });
   const toast = useToast();
   const router = useRouter();
 
@@ -65,18 +67,16 @@ export function Form() {
       <Heading as="h2" mb="2rem" fontSize={["lg", "2xl"]}>
         Formulário React Hook Form
       </Heading>
-      <FormControl minW={["15rem", "20rem"]}>
+      <FormControl minW={["15rem", "20rem"]} isInvalid={!!errors}>
         <FormLabel>Nome</FormLabel>
         <Input
           type="text"
           id="name"
           placeholder="Seu nome"
-          {...register("name", { required: true })}
+          {...register("name")}
         />
         {errors.name?.type === "required" && (
-          <Text color="red.500" fontSize="sm">
-            Este campo é obrigatório
-          </Text>
+          <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
         )}
 
         <FormLabel mt="1rem">E-mail</FormLabel>
@@ -84,12 +84,13 @@ export function Form() {
           type="email"
           id="email"
           placeholder="Seu e-mail"
-          {...register("email", { required: true })}
+          {...register("email")}
         />
         {errors.email?.type === "required" && (
-          <Text color="red.500" fontSize="sm">
-            Este campo é obrigatório
-          </Text>
+          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+        )}
+        {errors.email?.type === "email" && (
+          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         )}
 
         <FormLabel mt="1rem">Senha</FormLabel>
@@ -97,17 +98,13 @@ export function Form() {
           type="password"
           id="password"
           placeholder="Sua senha"
-          {...register("password", { required: true, minLength: 10 })}
+          {...register("password")}
         />
         {errors.password?.type === "required" && (
-          <Text color="red.500" fontSize="sm">
-            Este campo é obrigatório
-          </Text>
+          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         )}
-        {errors.password?.type === "minLength" && (
-          <Text color="red.500" fontSize="sm">
-            Senha deve conter 10 caracteres
-          </Text>
+        {errors.password?.type === "min" && (
+          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         )}
 
         <FormLabel mt="1rem">Profissões</FormLabel>
@@ -125,9 +122,7 @@ export function Form() {
           <option value="Outros">Outros</option>
         </Select>
         {errors.profession?.type === "validate" && (
-          <Text color="red.500" fontSize="sm">
-            Este campo é obrigatório
-          </Text>
+          <FormErrorMessage>Selecione uma opção</FormErrorMessage>
         )}
         <Checkbox
           mt="1rem"
@@ -140,9 +135,9 @@ export function Form() {
           </Text>
         </Checkbox>
         {errors.privacyTerms?.type === "validate" && (
-          <Text color="red.500" fontSize="sm">
-            Você deve aceitar os termos de privacidade
-          </Text>
+          <FormErrorMessage>
+            Você deve concordar com os termos de privacidade
+          </FormErrorMessage>
         )}
         <Center mt="1.5rem">
           <Button
