@@ -66,7 +66,7 @@ export function Form() {
         Formulário React Hook Form
       </Heading>
       <FormControl minW={["15rem", "20rem"]}>
-        <FormLabel>Name</FormLabel>
+        <FormLabel>Nome</FormLabel>
         <Input
           type="text"
           id="name"

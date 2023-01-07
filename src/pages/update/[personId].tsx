@@ -111,7 +111,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
           Editar registro de {person.name}
         </Heading>
         <FormControl maxWidth="20rem">
-          <FormLabel>Name</FormLabel>
+          <FormLabel>Nome</FormLabel>
           <Input
             type="text"
             id="name"
