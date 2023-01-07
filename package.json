@@ -15,6 +15,7 @@
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@hookform/resolvers": "^2.9.10",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
@@ -27,7 +28,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.4",
     "react-icons": "^4.6.0",
-    "typescript": "4.9.3"
+    "typescript": "4.9.3",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "json-server": "^0.17.1"
