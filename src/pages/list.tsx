@@ -169,8 +169,22 @@ export default function List() {
                   {user.map((row: ListProps, index) => {
                     return (
                       <Tr key={index}>
-                        <Td>{`${index + 1}⍛ ${row.name}`}</Td>
-                        <Td>{row.email}</Td>
+                        <Td
+                          maxW="200px"
+                          whiteSpace="nowrap"
+                          overflow="hidden"
+                          textOverflow="ellipsis"
+                          title={row.name}
+                        >{`${index + 1}⍛ ${row.name}`}</Td>
+                        <Td
+                          maxW="200px"
+                          whiteSpace="nowrap"
+                          overflow="hidden"
+                          textOverflow="ellipsis"
+                          title={row.email}
+                        >
+                          {row.email}
+                        </Td>
                         <Td>{row.profession}</Td>
                         <Td>{row.createdAt}</Td>
                         <Td>
