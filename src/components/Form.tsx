@@ -75,9 +75,7 @@ export function Form() {
           placeholder="Seu nome"
           {...register("name")}
         />
-        {errors.name?.type === "required" && (
           <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
-        )}
 
         <FormLabel mt="1rem">E-mail</FormLabel>
         <Input
@@ -86,12 +84,7 @@ export function Form() {
           placeholder="Seu e-mail"
           {...register("email")}
         />
-        {errors.email?.type === "required" && (
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-        )}
-        {errors.email?.type === "email" && (
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-        )}
 
         <FormLabel mt="1rem">Senha</FormLabel>
         <Input
@@ -100,17 +93,12 @@ export function Form() {
           placeholder="Sua senha"
           {...register("password")}
         />
-        {errors.password?.type === "required" && (
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-        )}
-        {errors.password?.type === "min" && (
-          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-        )}
 
         <FormLabel mt="1rem">Profissões</FormLabel>
         <Select
           defaultValue="0"
-          {...register("profession", { validate: (value) => value !== "0" })}
+          {...register("profession")}
         >
           <option value="0">Selecione sua profissão...</option>
           <option value="Desenvolvedor">Desenvolvedor</option>
@@ -121,9 +109,9 @@ export function Form() {
           <option value="Analista SEO">Analista SEO</option>
           <option value="Outros">Outros</option>
         </Select>
-        {errors.profession?.type === "validate" && (
-          <FormErrorMessage>Selecione uma opção</FormErrorMessage>
-        )}
+
+          <FormErrorMessage>{errors.profession?.message}</FormErrorMessage>
+
         <Checkbox
           mt="1rem"
           {...register("privacyTerms", {
