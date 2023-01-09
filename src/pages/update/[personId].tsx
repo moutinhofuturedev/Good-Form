@@ -131,7 +131,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
 
           <FormLabel mt="1rem">Senha</FormLabel>
           <Input
-            type="password"
+            type="text"
             id="password"
             placeholder="Sua senha"
             defaultValue={person.password}
