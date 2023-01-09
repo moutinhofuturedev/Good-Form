@@ -75,7 +75,7 @@ export function Form() {
           placeholder="Seu nome"
           {...register("name")}
         />
-          <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+        <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
 
         <FormLabel mt="1rem">E-mail</FormLabel>
         <Input
@@ -84,7 +84,7 @@ export function Form() {
           placeholder="Seu e-mail"
           {...register("email")}
         />
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+        <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
 
         <FormLabel mt="1rem">Senha</FormLabel>
         <Input
@@ -93,13 +93,10 @@ export function Form() {
           placeholder="Sua senha"
           {...register("password")}
         />
-          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+        <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
 
         <FormLabel mt="1rem">Profissões</FormLabel>
-        <Select
-          defaultValue="0"
-          {...register("profession")}
-        >
+        <Select defaultValue="0" {...register("profession")}>
           <option value="0">Selecione sua profissão...</option>
           <option value="Desenvolvedor">Desenvolvedor</option>
           <option value="Agilista">Agilista</option>
@@ -109,24 +106,15 @@ export function Form() {
           <option value="Analista SEO">Analista SEO</option>
           <option value="Outros">Outros</option>
         </Select>
+        <FormErrorMessage>{errors.profession?.message}</FormErrorMessage>
 
-          <FormErrorMessage>{errors.profession?.message}</FormErrorMessage>
-
-        <Checkbox
-          mt="1rem"
-          {...register("privacyTerms", {
-            validate: (value) => value === true,
-          })}
-        >
+        <Checkbox mt="1rem" {...register("privacyTerms")}>
           <Text fontSize={["smaller", "sm", "medium"]}>
             Eu concordo com os termos de privacidade
           </Text>
         </Checkbox>
-        {errors.privacyTerms?.type === "validate" && (
-          <FormErrorMessage>
-            Você deve concordar com os termos de privacidade
-          </FormErrorMessage>
-        )}
+        <FormErrorMessage>{errors.privacyTerms?.message}</FormErrorMessage>
+
         <Center mt="1.5rem">
           <Button
             colorScheme="blue"
