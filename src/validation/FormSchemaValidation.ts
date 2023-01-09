@@ -7,4 +7,5 @@ export const FormCreateSchema = yup.object().shape({
     .string()
     .required("Senha é obrigatório")
     .min(10, "Senha deve conter mínimo de 10 caracteres"),
+  profession: yup.string().test(value => value !== "0")
 });
