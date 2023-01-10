@@ -1,8 +1,8 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UpdateProps, FormData, updatePersonId } from "../../types/type";
-import { api } from "../../api/api";
+import { UpdateProps, FormData, updatePersonId } from '../../types/type';
+import { api } from '../../api/api';
 import { MdNavigateNext } from "react-icons/md";
 import { createdAt as updatedAt } from "../../utils/showDate";
 import { useRouter } from "next/router";
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
     };
   });
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 }
 
 export default function UpdatePerson({ person }: updatePersonId) {
