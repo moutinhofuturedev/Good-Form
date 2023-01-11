@@ -25,7 +25,7 @@ import {
   Center,
   Tooltip,
 } from "@chakra-ui/react";
-import InfoIcon from "@chakra-ui/icon";
+import { InfoIcon } from '@chakra-ui/icons'
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { MdNavigateNext, MdMoreHoriz, MdDeleteOutline, MdUpdate } from "react-icons/md";
