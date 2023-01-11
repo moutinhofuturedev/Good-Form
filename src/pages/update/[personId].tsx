@@ -21,10 +21,10 @@ export async function getStaticPaths() {
   const response = await api.get<UpdateProps[]>("http://localhost:3333/form");
   const data = response.data
 
-  const paths = data.map((person) => {
+  const paths = data.map((persons) => {
     return {
       params: {
-        personId: `${person.id}`,
+        personId: `${persons.id}`,
       },
     };
   });
