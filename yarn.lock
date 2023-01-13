@@ -265,19 +265,19 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.3"
 
-"@chakra-ui/icon@3.0.14":
-  version "3.0.14"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/icon/-/icon-3.0.14.tgz#aca6c998f2359ce937203f7463db299a6f8947ba"
-  integrity sha512-ksNDXSByoLFNec/7UANtiy/lHt2NO3/Xe5KIde3zh70yY1QcRQjO8TjvXgYwqLbR0D6OzMGggrZnJKafeZhjRQ==
+"@chakra-ui/icon@3.0.15":
+  version "3.0.15"
+  resolved "http://nexus.viavarejo.com.br/repository/npm-group/@chakra-ui/icon/-/icon-3.0.15.tgz#589adf65550b2ef07342a064376adcf64331606c"
+  integrity sha512-6RRppml4kW3hOMgMCtgeKc73nJhJEZXOvzDvmZKKW9WrLsDpWiI7WDQb5VIxUXqZlbrh88K5WVRY0YivIefCDA==
   dependencies:
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/icons@^2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.0.15.tgz#9613eae03e08dd9622723540cd3bf582e38b1fde"
-  integrity sha512-/Hsefej7DfRMg+Go+gf/UU4PHNMPmba41ogO1K3242aP9VSs/6/qXB3zrZHl21OX/rdrK408VqYEPInLmUwiHw==
+"@chakra-ui/icons@^2.0.16":
+  version "2.0.16"
+  resolved "http://nexus.viavarejo.com.br/repository/npm-group/@chakra-ui/icons/-/icons-2.0.16.tgz#5601acad2cf72f3692dca71c3c70cf9903c59f64"
+  integrity sha512-8sNMpkA4t0EOYuAZONgvMYaIO8vHyf9kBkHCk/2SRW+KXZKY0Q0aWJMxFW047r9GBUJmzvsu2wdrmOv3KMGzPA==
   dependencies:
-    "@chakra-ui/icon" "3.0.14"
+    "@chakra-ui/icon" "3.0.15"
 
 "@chakra-ui/image@2.0.12":
   version "2.0.12"
@@ -3354,10 +3354,10 @@ react-hook-form@^7.39.4:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.39.4.tgz#7d9edf4e778a0cec4383f0119cd0699e3826a14a"
   integrity sha512-B0e78r9kR9L2M4A4AXGbHoA/vyv34sB/n8QWJAw33TFz8f5t9helBbYAeqnbvcQf1EYzJxKX/bGQQh9K+evCyQ==
 
-react-icons@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.6.0.tgz#f83eda179af5d02c047449a20b702c858653d397"
-  integrity sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==
+react-icons@^4.7.1:
+  version "4.7.1"
+  resolved "http://nexus.viavarejo.com.br/repository/npm-group/react-icons/-/react-icons-4.7.1.tgz#0f4b25a5694e6972677cb189d2a72eabea7a8345"
+  integrity sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
