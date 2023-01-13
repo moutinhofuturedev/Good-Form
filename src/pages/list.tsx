@@ -23,7 +23,6 @@ import {
   MenuItem,
   Button,
   Center,
-  Tooltip,
 } from "@chakra-ui/react";
 import { BsInfoCircle } from "react-icons/bs"
 import Head from "next/head";
