@@ -25,7 +25,7 @@ import {
   Center,
   Tooltip,
 } from "@chakra-ui/react";
-import InfoIcon from "@chakra-ui/icon";
+import { BsInfoCircle } from "react-icons/bs"
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { MdNavigateNext, MdMoreHoriz, MdDeleteOutline, MdUpdate } from "react-icons/md";
@@ -190,14 +190,7 @@ export default function List() {
                         <Td>
                           {!row.updatedAt ? (
                             <Center>
-                              <Tooltip
-                                hasArrow
-                                label="Não há alterações"
-                                placement="top"
-                                bg="blue.500"
-                              >
-                                <InfoIcon boxSize={5} />
-                              </Tooltip>
+                             <Icon as={BsInfoCircle} fontSize={20} title="Não há alterações"/>
                             </Center>
                           ) : (
                             row.updatedAt
