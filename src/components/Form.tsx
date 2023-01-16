@@ -63,6 +63,7 @@ export function Form() {
       justifyContent="center"
       align="center"
       px="2rem"
+      mb="4rem"
     >
       <Heading as="h2" mb="2rem" fontSize={["lg", "2xl"]}>
         Formulário React Hook Form

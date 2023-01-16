@@ -142,6 +142,7 @@ export default function List() {
             borderRadius="1rem"
             p="1rem"
             mt="2rem"
+            mb="4rem"
             minW="620px"
           >
             <TableContainer>
