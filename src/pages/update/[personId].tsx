@@ -1,35 +1,26 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UpdateProps, FormData, updatePersonId } from '../../types/type';
+import { FormData, updatePersonId } from '../../types/type';
 import { api } from '../../api/api';
 import { MdNavigateNext } from "react-icons/md";
 import { createdAt as updatedAt } from "../../utils/showDate";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
+import { ParsedUrlQuery } from "querystring";
 
-export async function getStaticProps(context: any) {
-  const { params } = context;
-  const data = await api.get<FormData>(`http://localhost:3333/form/${params.personId}`);
-  const person = data.data
+interface dataProps extends ParsedUrlQuery {
+  personId: string
+}
+
+export const getServerSideProps: GetServerSideProps = async(context) => {
+  const { personId } = context.query as dataProps;
+  const data = await fetch(`http://localhost:3333/form/${personId}`);
+  const person = await data.json()
 
   return {
     props: { person },
   };
-}
-
-export async function getStaticPaths() {
-  const response = await api.get<UpdateProps[]>("http://localhost:3333/form");
-  const data = response.data
-
-  const paths = data.map((person) => {
-    return {
-      params: {
-        personId: `${person.id}`,
-      },
-    };
-  });
-
-  return { paths, fallback: false };
 }
 
 export default function UpdatePerson({ person }: updatePersonId) {
