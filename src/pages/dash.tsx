@@ -9,22 +9,29 @@ export default function Dash() {
       <Head>
         <title>Form | React</title>
       </Head>
-      <Breadcrumb fontWeight='medium' fontSize='sm' ml="1rem" mt="1rem" mb="4rem" separator={<MdNavigateNext color='gray.500' />}>
+      <Breadcrumb
+        fontWeight="medium"
+        fontSize="sm"
+        ml="1rem"
+        mt="1rem"
+        mb="4rem"
+        separator={<MdNavigateNext color="gray.500" />}
+      >
         <BreadcrumbItem>
-          <BreadcrumbLink href='/list'>Listagem</BreadcrumbLink>
+          <BreadcrumbLink href="/list">Listagem</BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem>
-          <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage color="blue.400">
-          <BreadcrumbLink href='/dash'>Formulário</BreadcrumbLink>
+          <BreadcrumbLink href="/dash">Formulário</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
       <Flex justifyContent="center" alignItems="center">
         <Form />
       </Flex>
     </Box>
-  )
+  );
 }

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
   Text,
@@ -85,6 +84,7 @@ export default function List() {
 
     useEffect(() => {
       loadList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
