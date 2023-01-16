@@ -38,6 +38,25 @@
       "profession": "Analista SEO",
       "createdAt": "01/01/2023 - 21:58",
       "id": 4
+    },
+    {
+      "name": "Danilo Gentili",
+      "email": "dani_gentili@gmail.com",
+      "password": "0987654321",
+      "privacyTerms": true,
+      "profession": "QA",
+      "createdAt": "16/01/2023 - 12:07",
+      "id": 5,
+      "updatedAt": "16/01/2023 - 12:08"
+    },
+    {
+      "name": "Lucas Montano Viera Padilha",
+      "email": "lucas_padilha@gmail.com",
+      "password": "qqqqwwwweee",
+      "privacyTerms": true,
+      "profession": "Outros",
+      "createdAt": "16/01/2023 - 13:53",
+      "id": 6
     }
   ]
 }
