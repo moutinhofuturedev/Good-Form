@@ -15,8 +15,8 @@ interface dataProps extends ParsedUrlQuery {
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
   const { personId } = context.query as dataProps;
-  const data = await fetch(`http://localhost:3333/form/${personId}`);
-  const person = await data.json()
+  const data = await api.get(`http://localhost:3333/form/${personId}`);
+  const person = await data.data
 
   return {
     props: { person },
