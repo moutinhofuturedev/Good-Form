@@ -67,7 +67,7 @@ export function Form() {
       <Heading as="h2" mb="2rem" fontSize={["lg", "2xl"]}>
         Formulário React Hook Form
       </Heading>
-      <FormControl minW={["15rem", "20rem"]} isInvalid={!!errors}>
+      <FormControl minW={["15rem", "20rem"]}>
         <FormLabel>Nome</FormLabel>
         <Input
           type="text"
@@ -75,7 +75,7 @@ export function Form() {
           placeholder="Seu nome"
           {...register("name")}
         />
-        <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+        <Text color="red.500">{errors.name?.message}</Text>
 
         <FormLabel mt="1rem">E-mail</FormLabel>
         <Input
@@ -84,7 +84,7 @@ export function Form() {
           placeholder="Seu e-mail"
           {...register("email")}
         />
-        <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+        <Text color="red.500">{errors.email?.message}</Text>
 
         <FormLabel mt="1rem">Senha</FormLabel>
         <Input
@@ -93,7 +93,7 @@ export function Form() {
           placeholder="Sua senha"
           {...register("password")}
         />
-        <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+        <Text color="red.500">{errors.password?.message}</Text>
 
         <FormLabel mt="1rem">Profissões</FormLabel>
         <Select defaultValue="0" {...register("profession")}>
@@ -106,14 +106,14 @@ export function Form() {
           <option value="Analista SEO">Analista SEO</option>
           <option value="Outros">Outros</option>
         </Select>
-        <FormErrorMessage>{errors.profession?.message}</FormErrorMessage>
+        <Text color="red.500">{errors.profession?.message}</Text>
 
         <Checkbox mt="1rem" {...register("privacyTerms")}>
           <Text fontSize={["smaller", "sm", "medium"]}>
             Eu concordo com os termos de privacidade
           </Text>
         </Checkbox>
-        <FormErrorMessage>{errors.privacyTerms?.message}</FormErrorMessage>
+        <Text color="red.500">{errors.privacyTerms?.message}</Text>
 
         <Center mt="1.5rem">
           <Button
