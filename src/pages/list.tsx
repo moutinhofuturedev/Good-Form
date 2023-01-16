@@ -84,6 +84,7 @@ export default function List() {
 
     useEffect(() => {
       loadList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
