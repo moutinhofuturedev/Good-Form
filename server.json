@@ -57,6 +57,25 @@
       "profession": "Outros",
       "createdAt": "16/01/2023 - 13:53",
       "id": 6
+    },
+    {
+      "name": "Felipe Carvalho",
+      "email": "felipe_carvalho@hotmail.com",
+      "password": "asdfghjklz",
+      "privacyTerms": true,
+      "profession": "Desenvolvedor",
+      "createdAt": "16/01/2023 - 14:23",
+      "id": 7
+    },
+    {
+      "name": "Júlio Vertullo",
+      "email": "vertullo_bispoj@hotmail.com",
+      "password": "vertullo12345",
+      "privacyTerms": true,
+      "profession": "Outros",
+      "createdAt": "16/01/2023 - 14:51",
+      "id": 8,
+      "updatedAt": "16/01/2023 - 14:53"
     }
   ]
 }
