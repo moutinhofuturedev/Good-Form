@@ -21,3 +21,8 @@ export const FormCreateSchema = yup.object().shape({
       (value) => value === true
     ),
 });
+
+export const FormUpdateSchema = yup.object().shape({
+  email: yup.string().required("E-mail é obrigatório").email("E-mail inválido."),
+  password: yup.string().required("Senha é obrigatório").min(10, "Senha deve conter mínimo de 10 caracteres.")
+})
