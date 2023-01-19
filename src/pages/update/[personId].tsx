@@ -1,30 +1,51 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Button,
+  Center,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Select,
+  useToast,
+  Text,
+} from "@chakra-ui/react";
 import Head from "next/head";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FormData, updatePersonId } from '../../types/type';
-import { api } from '../../api/api';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FormData, updatePersonId } from "../../types/type";
+import { api } from "../../api/api";
 import { MdNavigateNext } from "react-icons/md";
 import { createdAt as updatedAt } from "../../utils/showDate";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { FormUpdateSchema } from "../../validation/FormSchemaValidation";
 
 interface dataProps extends ParsedUrlQuery {
-  personId: string
+  personId: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { personId } = context.query as dataProps;
   const data = await api.get(`http://localhost:3333/form/${personId}`);
-  const person = await data.data
+  const person = await data.data;
 
   return {
     props: { person },
   };
-}
+};
 
 export default function UpdatePerson({ person }: updatePersonId) {
-  const { register, handleSubmit, formState: { isSubmitting } } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({ resolver: yupResolver(FormUpdateSchema) });
   const toast = useToast();
   const router = useRouter();
 
@@ -63,7 +84,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
         duration: 6000,
         isClosable: true,
         position: "top-left",
-      })
+      });
     }
   };
   return (
@@ -104,6 +125,8 @@ export default function UpdatePerson({ person }: updatePersonId) {
         <FormControl maxWidth="20rem">
           <FormLabel>Nome</FormLabel>
           <Input
+            isDisabled
+            variant="filled"
             type="text"
             id="name"
             placeholder="Seu nome"
@@ -119,6 +142,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
             defaultValue={person.email}
             {...register("email")}
           />
+          <Text color="red.500">{errors.email?.message}</Text>
 
           <FormLabel mt="1rem">Senha</FormLabel>
           <Input
@@ -128,6 +152,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
             defaultValue={person.password}
             {...register("password")}
           />
+          <Text color="red.500">{errors.password?.message}</Text>
 
           <FormLabel mt="1rem">Profissões</FormLabel>
           <Select defaultValue="0" {...register("profession")}>
