@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
   Text,
@@ -22,6 +23,7 @@ import {
   MenuItem,
   Button,
   Center,
+  Spinner,
 } from "@chakra-ui/react";
 import { BsInfoCircle } from "react-icons/bs"
 import Head from "next/head";
@@ -32,7 +34,8 @@ import { ListProps } from "../types/type";
 import { useRouter } from "next/router";
 
 export default function List() {
-    const [user, setUser] = useState<ListProps[]>([]);
+    const [ user, setUser ] = useState<ListProps[]>([]);
+    const [ loading, setLoading ] = useState(false)
     const toast = useToast();
     const router = useRouter();
 
@@ -65,11 +68,13 @@ export default function List() {
     }
 
     async function loadList() {
+      setLoading(true);
       try {
         const response = await api.get<ListProps[]>("/form");
         const data = response.data;
 
         setUser(data);
+        setLoading(false);
       } catch (error) {
         toast({
           title: "Não há dados",
@@ -79,13 +84,13 @@ export default function List() {
           isClosable: true,
           position: "top-right",
         });
+        setLoading(false);
       }
     }
 
     useEffect(() => {
       loadList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [loading]);
 
 
     return (
@@ -146,7 +151,16 @@ export default function List() {
             minW="620px"
           >
             <TableContainer>
-              <Table size="sm">
+              {loading ? (
+                <Flex justifyContent="center">
+                  <Spinner color='blue.500' thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200' 
+                    size='xl'
+                    />
+                </Flex>
+              ) : (
+                <Table size="sm">
                 <Thead>
                   <Tr>
                     {[
@@ -238,6 +252,7 @@ export default function List() {
                   })}
                 </Tbody>
               </Table>
+              )}
             </TableContainer>
             <Divider mt="2rem" />
           </Box>
