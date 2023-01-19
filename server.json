@@ -76,6 +76,24 @@
       "createdAt": "16/01/2023 - 14:51",
       "id": 8,
       "updatedAt": "16/01/2023 - 14:53"
+    },
+    {
+      "name": "Pedro Yusuke Cortez Cruz Kidera",
+      "email": "pedro_yusuke@yahoo.com.br",
+      "password": "Yusuke1234",
+      "privacyTerms": true,
+      "profession": "Desenvolvedor",
+      "createdAt": "19/01/2023 - 00:00",
+      "id": 9
+    },
+    {
+      "name": "Silvana Medeiros Lima",
+      "email": "sil_lima@gmail.com",
+      "password": "0987654321",
+      "privacyTerms": true,
+      "profession": "Agilista",
+      "createdAt": "19/01/2023 - 00:26",
+      "id": 10
     }
   ]
 }
