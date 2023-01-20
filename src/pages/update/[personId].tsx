@@ -126,7 +126,6 @@ export default function UpdatePerson({ person }: updatePersonId) {
           <FormLabel>Nome</FormLabel>
           <Input
             isDisabled
-            variant="filled"
             type="text"
             id="name"
             placeholder="Seu nome"
