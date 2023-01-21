@@ -1,6 +1,6 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
 import Head from "next/head";
-import { PageLink } from "../components/Link/PageLink";
+import { PageLink } from "../components/Link";
 import { MdNavigateNext } from "react-icons/md"
 
 export default function Home() {
