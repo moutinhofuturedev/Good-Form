@@ -24,11 +24,13 @@ import {
   Button,
   Center,
   Spinner,
+  Input,
 } from "@chakra-ui/react";
 import { BsInfoCircle } from "react-icons/bs"
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { MdNavigateNext, MdMoreHoriz, MdDeleteOutline, MdUpdate } from "react-icons/md";
+import { RiSearchLine } from "react-icons/ri";
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
 import { useRouter } from "next/router";
@@ -117,50 +119,75 @@ export default function List() {
             <BreadcrumbLink href="/list">Listagem</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
-        <Flex
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Flex justifyContent="center" alignItems="center">
-            <Container mt="2rem">
-              <Heading as="h2" size="lg">
-                Registros
-              </Heading>
-              <Text fontSize="sm">
-                Veja aqui a lista de pessoas registradas.
-              </Text>
-            </Container>
-            <Button
-              mt="2rem"
-              colorScheme="blue"
-              width="17.5rem"
-              onClick={() => router.push("/dash")}
-            >
-              Novo Registro
-            </Button>
-          </Flex>
-          <Divider py="1rem" maxW="560px" />
-          <Box
-            border="1px"
-            borderColor="gray.600"
-            borderRadius="1rem"
-            p="1rem"
+      <Flex
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Flex justifyContent="center" alignItems="center">
+          <Container mt="2rem">
+            <Heading as="h2" size="lg">
+              Registros
+            </Heading>
+            <Text fontSize="sm">
+              Veja aqui a lista de pessoas registradas.
+            </Text>
+          </Container>
+          <Button
             mt="2rem"
-            mb="4rem"
-            minW="620px"
+            colorScheme="blue"
+            width="17.5rem"
+            onClick={() => router.push("/dash")}
           >
-            <TableContainer>
-              {loading ? (
-                <Flex justifyContent="center">
-                  <Spinner color='blue.500' thickness='4px'
-                    speed='0.65s'
-                    emptyColor='gray.200' 
-                    size='xl'
-                    />
-                </Flex>
-              ) : (
-                <Table size="sm">
+            Novo Registro
+          </Button>
+        </Flex>
+        <Divider py="1rem" maxW="560px" />
+        <Flex
+          as="label"
+          flex="1"
+          py="1rem"
+          px="2rem"
+          ml="16rem"
+          mt="1rem"
+          maxWidth={400}
+          alignSelf="center"
+          alignItems="center"
+          color="gray.200"
+          position="relative"
+          bg="gray.800"
+          borderRadius="full"
+        >
+          <Input
+            px="1rem"
+            mr="1rem"
+            color="gray.50"
+            variant="unstyled"
+            placeholder="Buscar por nomes"
+            _placeholder={{ color: "gray.400" }}
+          />
+          <Icon as={RiSearchLine} fontSize="20" />
+        </Flex>
+        <Box
+          border="1px"
+          borderColor="gray.600"
+          borderRadius="1rem"
+          p="1rem"
+          mt="2rem"
+          mb="4rem"
+          minW="620px"
+        >
+          <TableContainer>
+            {loading ? (
+              <Flex justifyContent="center">
+                <Spinner color='blue.500' thickness='4px'
+                  speed='0.65s'
+                  emptyColor='gray.200'
+                  size='xl'
+                />
+              </Flex>
+            ) : (
+              <Table size="sm">
                 <Thead>
                   <Tr>
                     {[
@@ -204,7 +231,7 @@ export default function List() {
                         <Td>
                           {!row.updatedAt ? (
                             <Center>
-                             <Icon as={BsInfoCircle} fontSize={20} title="Não há alterações"/>
+                              <Icon as={BsInfoCircle} fontSize={20} title="Não há alterações" />
                             </Center>
                           ) : (
                             row.updatedAt
@@ -252,11 +279,11 @@ export default function List() {
                   })}
                 </Tbody>
               </Table>
-              )}
-            </TableContainer>
-            <Divider mt="2rem" />
-          </Box>
-        </Flex>
-      </Box>
-    ); 
+            )}
+          </TableContainer>
+          <Divider mt="2rem" />
+        </Box>
+      </Flex>
+    </Box>
+  );
 }
