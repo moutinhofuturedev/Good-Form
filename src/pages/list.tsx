@@ -246,9 +246,6 @@ export default function List() {
                               borderRadius="9999"
                               w="2.5rem"
                               h="2.5rem"
-                              _active={{
-                                transform: "rotate(90deg)",
-                              }}
                             >
                               <Icon as={MdMoreHoriz} w={6} h={6} />
                             </MenuButton>
