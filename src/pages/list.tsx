@@ -46,10 +46,11 @@ export default function List() {
     }
 
     const handleDeleteData = async (id: number) => {
+      setLoading(true)
        try {
         await api.delete(`form/${id}`)
 
-        router.push('/')
+        setLoading(false)
         toast({
             title: "Registro removido",
             status: "success",
@@ -66,6 +67,7 @@ export default function List() {
           position: "top-left",
           isClosable: true
         })
+        setLoading(false)
        }
     }
 
