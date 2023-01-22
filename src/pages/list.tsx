@@ -45,7 +45,7 @@ export default function List() {
         await router.push(`update/${id}`)
     }
 
-    const handleDeleteData = async (id: number) => {
+    const handleDeletePerson = async (id: number) => {
       setLoading(true)
        try {
         await api.delete(`form/${id}`)
@@ -263,7 +263,7 @@ export default function List() {
                               <MenuItem
                                 bg="gray.700"
                                 _hover={{ bg: "gray.500" }}
-                                onClick={() => handleDeleteData(row.id)}
+                                onClick={() => handleDeletePerson(row.id)}
                                 icon={<MdDeleteOutline size={20} />}
                                 fontWeight="bold"
                                 fontSize="md"
