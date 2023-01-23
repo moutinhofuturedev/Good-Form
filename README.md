@@ -8,3 +8,10 @@
 - **HTTP Client**: [Axios](https://axios-http.com/)
 - **Format Code**: [ESLint](https://eslint.org/)
 - **Deployment**: [Vercel](https://vercel.com)
+
+## C.R.U.D
+
+> create operation </br>
+> list operation </br>
+> update operation </br>
+> delete operation</br>
