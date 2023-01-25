@@ -16,8 +16,10 @@
 > update operation </br>
 > delete operation</br> 
 
-## get started
+## Installing project
 
-- yarn - install dependencies 
-- yarn dev - run project 
-- yarn fake-api - api rest 
+```sh
+$ yarn - install dependencies 
+$ yarn dev - run project 
+$ yarn fake-api - api rest 
+```
