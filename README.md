@@ -14,4 +14,10 @@
 > create operation </br>
 > list operation </br>
 > update operation </br>
-> delete operation</br>
+> delete operation</br> 
+
+## get started
+
+- yarn - install dependencies 
+- yarn dev - run project 
+- yarn fake-api - api rest 
