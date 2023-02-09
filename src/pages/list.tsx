@@ -27,14 +27,14 @@ import {
   Input,
   TableCaption,
 } from "@chakra-ui/react";
-import { BsInfoCircle } from "react-icons/bs"
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { BsInfoCircle } from "react-icons/bs"
 import { MdNavigateNext, MdMoreHoriz, MdDeleteOutline, MdUpdate } from "react-icons/md";
 import { RiSearchLine } from "react-icons/ri";
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
-import { useRouter } from "next/router";
 import useDebounce from "../hooks/debounce";
 
 export default function List() {
