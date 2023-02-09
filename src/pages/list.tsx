@@ -25,21 +25,26 @@ import {
   Center,
   Spinner,
   Input,
+  TableCaption,
 } from "@chakra-ui/react";
-import { BsInfoCircle } from "react-icons/bs"
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { BsInfoCircle } from "react-icons/bs"
 import { MdNavigateNext, MdMoreHoriz, MdDeleteOutline, MdUpdate } from "react-icons/md";
 import { RiSearchLine } from "react-icons/ri";
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
-import { useRouter } from "next/router";
+import useDebounce from "../hooks/debounce";
 
 export default function List() {
     const [ user, setUser ] = useState<ListProps[]>([]);
-    const [ loading, setLoading ] = useState(false)
+    const [ searchTerm, setSearchTerm ] = useState("");
+    const [ loading, setLoading ] = useState(false);
     const toast = useToast();
     const router = useRouter();
+
+    const debounce = useDebounce(searchTerm, 500);
 
     const handleGoToUpdatePage = async (id: number) => {
         await router.push(`update/${id}`)
@@ -72,13 +77,11 @@ export default function List() {
     }
 
     async function loadList() {
-      setLoading(true);
       try {
-        const response = await api.get<ListProps[]>("/form");
-        const data = response.data;
+          const response = await api.get<ListProps[]>("/form");
+          const data = response.data.filter((person) => person.name.includes(debounce))
 
-        setUser(data);
-        setLoading(false);
+          setUser(data);
       } catch (error) {
         toast({
           title: "Não há dados",
@@ -88,13 +91,12 @@ export default function List() {
           isClosable: true,
           position: "top-right",
         });
-        setLoading(false);
       }
     }
 
     useEffect(() => {
       loadList();
-    }, [loading]);
+    }, [debounce, loading]);
 
 
     return (
@@ -161,12 +163,15 @@ export default function List() {
           borderRadius="full"
         >
           <Input
+            type="text"
+            value={searchTerm}
             px="1rem"
             mr="1rem"
             color="gray.50"
             variant="unstyled"
             placeholder="Buscar por nomes"
             _placeholder={{ color: "gray.400" }}
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <Icon as={RiSearchLine} fontSize="20" />
         </Flex>
@@ -189,7 +194,7 @@ export default function List() {
                 />
               </Flex>
             ) : (
-              <Table size="sm">
+              <Table size="sm" variant="striped">
                 <Thead>
                   <Tr>
                     {[
@@ -209,7 +214,7 @@ export default function List() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {user.map((row: ListProps, index) => {
+                  {user.length > 0 ? user.map((row: ListProps, index) => {
                     return (
                       <Tr key={index}>
                         <Td
@@ -218,7 +223,7 @@ export default function List() {
                           overflow="hidden"
                           textOverflow="ellipsis"
                           title={row.name}
-                        >{`${index + 1}⍛ ${row.name}`}</Td>
+                        >{row.name}</Td>
                         <Td
                           maxW="200px"
                           whiteSpace="nowrap"
@@ -274,8 +279,13 @@ export default function List() {
                           </Menu>
                         </Td>
                       </Tr>
-                    );
-                  })}
+                    )
+                  }) : (
+                    <TableCaption fontSize="md">
+                      Nenhum registro encontrado
+                    </TableCaption>
+                  )
+                  }
                 </Tbody>
               </Table>
             )}
