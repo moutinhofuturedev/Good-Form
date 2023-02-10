@@ -25,117 +25,116 @@ import {
   Center,
   Spinner,
   Input,
-  TableCaption,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { BsInfoCircle } from "react-icons/bs"
-import { MdNavigateNext, MdMoreHoriz, MdDeleteOutline, MdUpdate } from "react-icons/md";
+import { BsInfoCircle } from "react-icons/bs";
+import {
+  MdNavigateNext,
+  MdMoreHoriz,
+  MdDeleteOutline,
+  MdUpdate,
+} from "react-icons/md";
 import { RiSearchLine } from "react-icons/ri";
-import { api } from '../api/api';
+import { api } from "../api/api";
 import { ListProps } from "../types/type";
 import useDebounce from "../hooks/debounce";
 
 export default function List() {
-    const [ user, setUser ] = useState<ListProps[]>([]);
-    const [ searchTerm, setSearchTerm ] = useState("");
-    const [ loading, setLoading ] = useState(false);
-    const toast = useToast();
-    const router = useRouter();
+  const [user, setUser] = useState<ListProps[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
+  const router = useRouter();
 
-    const debounce = useDebounce(searchTerm, 500);
+  const debounce = useDebounce(searchTerm, 500);
 
-    const handleGoToUpdatePage = async (id: number) => {
-        await router.push(`update/${id}`)
+  const handleGoToUpdatePage = async (id: number) => {
+    await router.push(`update/${id}`);
+  };
+
+  const handleDeletePerson = async (id: number) => {
+    setLoading(true);
+    try {
+      await api.delete(`form/${id}`);
+
+      setLoading(false);
+      toast({
+        title: "Registro removido",
+        status: "success",
+        duration: 6000,
+        position: "top-left",
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Erro ao tentar remover registro.",
+        status: "error",
+        duration: 6000,
+        position: "top-left",
+        isClosable: true,
+      });
+      setLoading(false);
     }
+  };
 
-    const handleDeletePerson = async (id: number) => {
-      setLoading(true)
-       try {
-        await api.delete(`form/${id}`)
+  async function loadList() {
+    try {
+      const response = await api.get<ListProps[]>("/form");
+      const data = response.data.filter((person) =>
+        person.name.includes(debounce)
+      );
 
-        setLoading(false)
-        toast({
-            title: "Registro removido",
-            status: "success",
-            duration: 6000,
-            position: "top-left",
-            isClosable: true
-        })
-       } catch (error) {
-        toast({
-          title: "Error",
-          description: "Erro ao tentar remover registro.",
-          status: "error",
-          duration: 6000,
-          position: "top-left",
-          isClosable: true
-        })
-        setLoading(false)
-       }
+      setUser(data);
+    } catch (error) {
+      toast({
+        title: "Não há dados",
+        description: "Erro ao tentar buscar registros",
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        position: "top-right",
+      });
     }
+  }
 
-    async function loadList() {
-      try {
-          const response = await api.get<ListProps[]>("/form");
-          const data = response.data.filter((person) => person.name.includes(debounce))
+  useEffect(() => {
+    loadList();
+  }, [debounce, loading]);
 
-          setUser(data);
-      } catch (error) {
-        toast({
-          title: "Não há dados",
-          description: "Erro ao tentar buscar registros",
-          status: "error",
-          duration: 6000,
-          isClosable: true,
-          position: "top-right",
-        });
-      }
-    }
-
-    useEffect(() => {
-      loadList();
-    }, [debounce, loading]);
-
-
-    return (
-      <Box h="100vh">
-        <Head>
-          <title>Form | Listagem</title>
-        </Head>
-        <Breadcrumb
-          fontWeight="medium"
-          fontSize="sm"
-          ml="1rem"
-          mt="1rem"
-          separator={<MdNavigateNext color="gray.500" />}
-        >
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/dash">Formulário</BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem isCurrentPage color="blue.400">
-            <BreadcrumbLink href="/list">Listagem</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
-      <Flex
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
+  return (
+    <Box h="100vh">
+      <Head>
+        <title>Form | Listagem</title>
+      </Head>
+      <Breadcrumb
+        fontWeight="medium"
+        fontSize="sm"
+        ml="1rem"
+        mt="1rem"
+        separator={<MdNavigateNext color="gray.500" />}
       >
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/dash">Formulário</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem isCurrentPage color="blue.400">
+          <BreadcrumbLink href="/list">Listagem</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
+      <Flex flexDirection="column" justifyContent="center" alignItems="center">
         <Flex justifyContent="center" alignItems="center">
           <Container mt="2rem">
             <Heading as="h2" size="lg">
               Registros
             </Heading>
-            <Text fontSize="sm">
-              Veja aqui a lista de pessoas registradas.
-            </Text>
+            <Text fontSize="sm">Veja aqui a lista de pessoas registradas.</Text>
           </Container>
           <Button
             mt="2rem"
@@ -187,14 +186,16 @@ export default function List() {
           <TableContainer>
             {loading ? (
               <Flex justifyContent="center">
-                <Spinner color='blue.500' thickness='4px'
-                  speed='0.65s'
-                  emptyColor='gray.200'
-                  size='xl'
+                <Spinner
+                  color="blue.500"
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  size="xl"
                 />
               </Flex>
             ) : (
-              <Table size="sm" variant="striped">
+              <Table size="sm" variant="simple" colorScheme="blue">
                 <Thead>
                   <Tr>
                     {[
@@ -214,78 +215,81 @@ export default function List() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {user.length > 0 ? user.map((row: ListProps, index) => {
-                    return (
-                      <Tr key={index}>
-                        <Td
-                          maxW="200px"
-                          whiteSpace="nowrap"
-                          overflow="hidden"
-                          textOverflow="ellipsis"
-                          title={row.name}
-                        >{row.name}</Td>
-                        <Td
-                          maxW="200px"
-                          whiteSpace="nowrap"
-                          overflow="hidden"
-                          textOverflow="ellipsis"
-                          title={row.email}
-                        >
-                          {row.email}
-                        </Td>
-                        <Td>{row.profession}</Td>
-                        <Td>{row.createdAt}</Td>
-                        <Td>
-                          {!row.updatedAt ? (
-                            <Center>
-                              <Icon as={BsInfoCircle} fontSize={20} title="Não há alterações" />
-                            </Center>
-                          ) : (
-                            row.updatedAt
-                          )}
-                        </Td>
-                        <Td width="1px">
-                          <Menu>
-                            <MenuButton
-                              border="1px solid"
-                              borderRadius="9999"
-                              w="2.5rem"
-                              h="2.5rem"
+                  {user.length > 0
+                    ? user.map((row: ListProps, index) => {
+                        return (
+                          <Tr key={index}>
+                            <Td
+                              maxW="200px"
+                              whiteSpace="nowrap"
+                              overflow="hidden"
+                              textOverflow="ellipsis"
+                              title={row.name}
                             >
-                              <Icon as={MdMoreHoriz} w={6} h={6} />
-                            </MenuButton>
-                            <MenuList bg="gray.700" minWidth="140px">
-                              <MenuItem
-                                bg="gray.700"
-                                _hover={{ bg: "gray.500" }}
-                                onClick={() => handleGoToUpdatePage(row.id)}
-                                icon={<MdUpdate size={20} />}
-                                fontWeight="bold"
-                                fontSize="md"
-                              >
-                                Editar
-                              </MenuItem>
-                              <MenuItem
-                                bg="gray.700"
-                                _hover={{ bg: "gray.500" }}
-                                onClick={() => handleDeletePerson(row.id)}
-                                icon={<MdDeleteOutline size={20} />}
-                                fontWeight="bold"
-                                fontSize="md"
-                              >
-                                Deletar
-                              </MenuItem>
-                            </MenuList>
-                          </Menu>
-                        </Td>
-                      </Tr>
-                    )
-                  }) : (
-                    <TableCaption fontSize="md">
-                      Nenhum registro encontrado
-                    </TableCaption>
-                  )
-                  }
+                              {row.name}
+                            </Td>
+                            <Td
+                              maxW="200px"
+                              whiteSpace="nowrap"
+                              overflow="hidden"
+                              textOverflow="ellipsis"
+                              title={row.email}
+                            >
+                              {row.email}
+                            </Td>
+                            <Td>{row.profession}</Td>
+                            <Td>{row.createdAt}</Td>
+                            <Td>
+                              {!row.updatedAt ? (
+                                <Center>
+                                  <Icon
+                                    as={BsInfoCircle}
+                                    fontSize={20}
+                                    title="Não há alterações"
+                                  />
+                                </Center>
+                              ) : (
+                                row.updatedAt
+                              )}
+                            </Td>
+                            <Td width="1px">
+                              <Menu>
+                                <MenuButton
+                                  border="1px solid"
+                                  borderRadius="9999"
+                                  w="2.5rem"
+                                  h="2.5rem"
+                                >
+                                  <Icon as={MdMoreHoriz} w={6} h={6} />
+                                </MenuButton>
+                                <MenuList bg="gray.700" minWidth="140px">
+                                  <MenuItem
+                                    bg="gray.700"
+                                    _hover={{ bg: "gray.500" }}
+                                    onClick={() => handleGoToUpdatePage(row.id)}
+                                    icon={<MdUpdate size={20} />}
+                                    fontWeight="bold"
+                                    fontSize="md"
+                                  >
+                                    Editar
+                                  </MenuItem>
+                                  <MenuItem
+                                    bg="gray.700"
+                                    _hover={{ bg: "gray.500" }}
+                                    onClick={() => handleDeletePerson(row.id)}
+                                    icon={<MdDeleteOutline size={20} />}
+                                    fontWeight="bold"
+                                    fontSize="md"
+                                  >
+                                    Deletar
+                                  </MenuItem>
+                                </MenuList>
+                              </Menu>
+                            </Td>
+                          </Tr>
+                        );
+                      })
+                    : null}
                 </Tbody>
               </Table>
             )}
