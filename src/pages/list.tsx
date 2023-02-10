@@ -48,7 +48,7 @@ export default function List() {
   const toast = useToast();
   const router = useRouter();
 
-  const debounce = useDebounce(searchTerm, 500);
+  const debounce = useDebounce(searchTerm, 300);
 
   const handleGoToUpdatePage = async (id: number) => {
     await router.push(`update/${id}`);
@@ -194,7 +194,7 @@ export default function List() {
                 />
               </Flex>
             ) : (
-              <Table size="sm" variant="striped">
+              <Table size="sm">
                 <Thead>
                   <Tr>
                     {[
