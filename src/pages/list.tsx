@@ -151,9 +151,8 @@ export default function List() {
           flex="1"
           py="1rem"
           px="2rem"
-          ml="16rem"
-          mt="1rem"
-          maxWidth={400}
+          mt="2rem"
+          w="560px"
           alignSelf="center"
           alignItems="center"
           color="gray.200"
@@ -195,7 +194,7 @@ export default function List() {
                 />
               </Flex>
             ) : (
-              <Table size="sm" variant="simple" colorScheme="blue">
+              <Table size="sm" variant="striped">
                 <Thead>
                   <Tr>
                     {[
