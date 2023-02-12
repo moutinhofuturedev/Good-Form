@@ -12,28 +12,22 @@ export function Form() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(FormCreateSchema) });
   const toast = useToast();
   const router = useRouter();
 
-  const OnSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          createdAt();
-          resolve(
-            api.post("/form", {
-              name: data.name,
-              email: data.email,
-              password: data.password,
-              privacyTerms: data.privacyTerms,
-              profession: data.profession,
-              createdAt: createdAt(),
-            })
-          );
-        }, 5000)
-      );
+  const OnSubmit: SubmitHandler<FormData> = (data) => {
+    createdAt();
+    api.post("/persons", {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      privacyTerms: data.privacyTerms,
+      profession: data.profession,
+      createdAt: createdAt(),
+    }).then(() => {
+      router.push("/list");
       toast({
         title: "Registrado.",
         description: "Registro realizado com sucesso.",
@@ -42,9 +36,7 @@ export function Form() {
         isClosable: true,
         position: "top-left",
       });
-
-      router.push("/list");
-    } catch (error) {
+    }).catch(() => {
       toast({
         title: "Erro de cadastro",
         status: "error",
@@ -53,7 +45,7 @@ export function Form() {
         isClosable: true,
         position: "top-left",
       });
-    }
+    })
   };
 
   return (
@@ -121,7 +113,6 @@ export function Form() {
             colorScheme="blue"
             w="100%"
             onClick={() => handleSubmit(OnSubmit)()}
-            isLoading={isSubmitting}
           >
             Registrar
           </Button>

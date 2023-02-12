@@ -23,7 +23,6 @@ import {
   MenuItem,
   Button,
   Center,
-  Spinner,
   Input,
 } from "@chakra-ui/react";
 import Head from "next/head";
@@ -42,9 +41,8 @@ import { ListProps } from "../types/type";
 import useDebounce from "../hooks/debounce";
 
 export default function List() {
-  const [user, setUser] = useState<ListProps[]>([]);
+  const [users, setUsers] = useState<ListProps[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(false);
   const toast = useToast();
   const router = useRouter();
 
@@ -54,40 +52,38 @@ export default function List() {
     await router.push(`update/${id}`);
   };
 
-  const handleDeletePerson = async (id: number) => {
-    setLoading(true);
-    try {
-      await api.delete(`form/${id}`);
-
-      setLoading(false);
-      toast({
-        title: "Registro removido",
-        status: "success",
-        duration: 6000,
-        position: "top-left",
-        isClosable: true,
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Erro ao tentar remover registro.",
-        status: "error",
-        duration: 6000,
-        position: "top-left",
-        isClosable: true,
-      });
-      setLoading(false);
-    }
+  const handleDeletePerson = (id: number) => {
+    api.delete(`persons/${id}`)
+      .then(() => {
+        const newList = users.filter(person => person.id !== id);
+        setUsers(newList)
+        toast({
+          title: "Registro removido",
+          status: "success",
+          duration: 6000,
+          position: "top-left",
+          isClosable: true,
+        });
+      }).catch(() => {
+        toast({
+          title: "Error",
+          description: "Erro ao tentar remover registro.",
+          status: "error",
+          duration: 6000,
+          position: "top-left",
+          isClosable: true,
+        });
+      })
   };
 
-  async function loadList() {
+  const loadList = async () => {
     try {
-      const response = await api.get<ListProps[]>("/form");
+      const response = await api.get<ListProps[]>("/persons");
       const data = response.data.filter((person) =>
         person.name.includes(debounce)
       );
 
-      setUser(data);
+      setUsers(data);
     } catch (error) {
       toast({
         title: "Não há dados",
@@ -97,12 +93,12 @@ export default function List() {
         isClosable: true,
         position: "top-right",
       });
-    }
-  }
+    };
+  };
 
   useEffect(() => {
     loadList();
-  }, [debounce, loading]);
+  }, [debounce]);
 
   return (
     <Box h="100vh">
@@ -183,16 +179,10 @@ export default function List() {
           minW="620px"
         >
           <TableContainer>
-            {loading ? (
-              <Flex justifyContent="center">
-                <Spinner
-                  color="blue.500"
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  size="xl"
-                />
-              </Flex>
+            {users.length === 0 ? (
+              <Center>
+                <Text>Não há registros.</Text>
+              </Center>
             ) : (
               <Table size="sm">
                 <Thead>
@@ -214,80 +204,80 @@ export default function List() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {user.length > 0
-                    ? user.map((row: ListProps, index) => {
-                        return (
-                          <Tr key={index}>
-                            <Td
-                              maxW="200px"
-                              whiteSpace="nowrap"
-                              overflow="hidden"
-                              textOverflow="ellipsis"
-                              title={row.name}
-                            >
-                              {row.name}
-                            </Td>
-                            <Td
-                              maxW="200px"
-                              whiteSpace="nowrap"
-                              overflow="hidden"
-                              textOverflow="ellipsis"
-                              title={row.email}
-                            >
-                              {row.email}
-                            </Td>
-                            <Td>{row.profession}</Td>
-                            <Td>{row.createdAt}</Td>
-                            <Td>
-                              {!row.updatedAt ? (
-                                <Center>
-                                  <Icon
-                                    as={BsInfoCircle}
-                                    fontSize={20}
-                                    title="Não há alterações"
-                                  />
-                                </Center>
-                              ) : (
-                                row.updatedAt
-                              )}
-                            </Td>
-                            <Td width="1px">
-                              <Menu>
-                                <MenuButton
-                                  border="1px solid"
-                                  borderRadius="9999"
-                                  w="2.5rem"
-                                  h="2.5rem"
+                  {users.length > 0
+                    ? users.map((row: ListProps, index) => {
+                      return (
+                        <Tr key={index}>
+                          <Td
+                            maxW="200px"
+                            whiteSpace="nowrap"
+                            overflow="hidden"
+                            textOverflow="ellipsis"
+                            title={row.name}
+                          >
+                            {row.name}
+                          </Td>
+                          <Td
+                            maxW="200px"
+                            whiteSpace="nowrap"
+                            overflow="hidden"
+                            textOverflow="ellipsis"
+                            title={row.email}
+                          >
+                            {row.email}
+                          </Td>
+                          <Td>{row.profession}</Td>
+                          <Td>{row.createdAt}</Td>
+                          <Td>
+                            {!row.updatedAt ? (
+                              <Center>
+                                <Icon
+                                  as={BsInfoCircle}
+                                  fontSize={20}
+                                  title="Não há alterações"
+                                />
+                              </Center>
+                            ) : (
+                              row.updatedAt
+                            )}
+                          </Td>
+                          <Td width="1px">
+                            <Menu>
+                              <MenuButton
+                                border="1px solid"
+                                borderRadius="9999"
+                                w="2.5rem"
+                                h="2.5rem"
+                              >
+                                <Icon as={MdMoreHoriz} w={6} h={6} />
+                              </MenuButton>
+                              <MenuList bg="gray.700" minWidth="140px">
+                                <MenuItem
+                                  bg="gray.700"
+                                  _hover={{ bg: "gray.500" }}
+                                  onClick={() => handleGoToUpdatePage(row.id)}
+                                  icon={<MdUpdate size={20} />}
+                                  fontWeight="bold"
+                                  fontSize="md"
                                 >
-                                  <Icon as={MdMoreHoriz} w={6} h={6} />
-                                </MenuButton>
-                                <MenuList bg="gray.700" minWidth="140px">
-                                  <MenuItem
-                                    bg="gray.700"
-                                    _hover={{ bg: "gray.500" }}
-                                    onClick={() => handleGoToUpdatePage(row.id)}
-                                    icon={<MdUpdate size={20} />}
-                                    fontWeight="bold"
-                                    fontSize="md"
-                                  >
-                                    Editar
-                                  </MenuItem>
-                                  <MenuItem
-                                    bg="gray.700"
-                                    _hover={{ bg: "gray.500" }}
-                                    onClick={() => handleDeletePerson(row.id)}
-                                    icon={<MdDeleteOutline size={20} />}
-                                    fontWeight="bold"
-                                    fontSize="md"
-                                  >
-                                    Deletar
-                                  </MenuItem>
-                                </MenuList>
-                              </Menu>
-                            </Td>
-                          </Tr>
-                        );
-                      })
+                                  Editar
+                                </MenuItem>
+                                <MenuItem
+                                  bg="gray.700"
+                                  _hover={{ bg: "gray.500" }}
+                                  onClick={() => handleDeletePerson(row.id)}
+                                  icon={<MdDeleteOutline size={20} />}
+                                  fontWeight="bold"
+                                  fontSize="md"
+                                >
+                                  Deletar
+                                </MenuItem>
+                              </MenuList>
+                            </Menu>
+                          </Td>
+                        </Tr>
+                      );
+                    })
                     : null}
                 </Tbody>
               </Table>
