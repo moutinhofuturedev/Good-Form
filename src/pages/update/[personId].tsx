@@ -32,7 +32,7 @@ interface dataProps extends ParsedUrlQuery {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { personId } = context.query as dataProps;
-  const data = await api.get(`http://localhost:3333/form/${personId}`);
+  const data = await api.get(`http://localhost:3333/persons/${personId}`);
   const person = await data.data;
 
   return {
@@ -50,22 +50,16 @@ export default function UpdatePerson({ person }: updatePersonId) {
   const router = useRouter();
 
   const OnSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          updatedAt();
-          resolve(
-            api.patch(`/form/${person.id}`, {
-              name: data.name,
-              email: data.email,
-              password: data.password,
-              profession: data.profession,
-              createdAt: data.createdAt,
-              updatedAt: updatedAt(),
-            })
-          );
-        }, 5000)
-      );
+    updatedAt();
+    api.patch(`/persons/${person.id}`, {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      profession: data.profession,
+      createdAt: data.createdAt,
+      updatedAt: updatedAt(),
+    }).then(() => {
+      router.push("/list");
       toast({
         title: "Registro alterado.",
         description: "Atualização feita com sucesso.",
@@ -74,9 +68,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
         isClosable: true,
         position: "top-left",
       });
-
-      router.push("/list");
-    } catch (error) {
+    }).catch(() => {
       toast({
         title: "Error",
         description: "Erro ao tentar atualizar registro",
@@ -85,8 +77,9 @@ export default function UpdatePerson({ person }: updatePersonId) {
         isClosable: true,
         position: "top-left",
       });
-    }
+    })
   };
+
   return (
     <Box h="100vh">
       <Head>
@@ -125,7 +118,6 @@ export default function UpdatePerson({ person }: updatePersonId) {
         <FormControl maxWidth="20rem">
           <FormLabel>Nome</FormLabel>
           <Input
-            isDisabled
             type="text"
             id="name"
             placeholder="Seu nome"
@@ -145,7 +137,7 @@ export default function UpdatePerson({ person }: updatePersonId) {
 
           <FormLabel mt="1rem">Senha</FormLabel>
           <Input
-            type="text"
+            type="password"
             id="password"
             placeholder="Sua senha"
             defaultValue={person.password}
