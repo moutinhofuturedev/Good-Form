@@ -19,6 +19,15 @@
       "createdAt": "24/12/2022 - 19:28",
       "id": 2,
       "updatedAt": "28/12/2022 - 23:04"
+    },
+    {
+      "name": "Renan Oliveira",
+      "email": "renan_vicali@icloud.com",
+      "password": "rtyfghcvb456",
+      "privacyTerms": true,
+      "profession": "Analista SEO",
+      "createdAt": "16/03/2023 - 08:36",
+      "id": 3
     }
   ]
 }

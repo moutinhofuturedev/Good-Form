@@ -120,6 +120,10 @@ export default function List() {
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
 
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/test">Test</BreadcrumbLink>
+        </BreadcrumbItem>
+
         <BreadcrumbItem isCurrentPage color="blue.400">
           <BreadcrumbLink href="/list">Listagem</BreadcrumbLink>
         </BreadcrumbItem>
