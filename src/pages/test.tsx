@@ -1,12 +1,11 @@
-import { Box, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { GetServerSideProps } from 'next';
 import { api } from '../api/api';
 import { ListProps } from "../types/type";
 
 interface OneProps {
-    data: ListProps[]
+    data: Pick<ListProps, 'id' | 'name' | 'email'>[]
 }
-
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const response = await api.get("/persons")
@@ -20,7 +19,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 export default function Test({ data }: OneProps) {
-  console.log(data);
   return (
     <TableContainer>
       <Table>
@@ -31,9 +29,9 @@ export default function Test({ data }: OneProps) {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((row, index) => {
+          {data.map((row) => {
             return (
-              <Tr key={index}>
+              <Tr key={row.id}>
                 <Td>{row.name}</Td>
                 <Td>{row.email}</Td>
               </Tr>
