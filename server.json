@@ -28,6 +28,15 @@
       "profession": "Analista SEO",
       "createdAt": "16/03/2023 - 08:36",
       "id": 3
+    },
+    {
+      "name": "Júlio Vertullo",
+      "email": "juliovertullo@gmail.com.br",
+      "password": "asdfghjkl7890",
+      "privacyTerms": true,
+      "profession": "Outros",
+      "createdAt": "09/09/2023 - 17:53",
+      "id": 4
     }
   ]
 }
