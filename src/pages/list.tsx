@@ -198,9 +198,9 @@ export default function List() {
                       "Data de Criação",
                       "Data de Alteração",
                       "Ações",
-                    ].map((item, index) => {
+                    ].map((item) => {
                       return (
-                        <Td key={index} color="gray.500" fontWeight="medium">
+                        <Td key={item} color="gray.500" fontWeight="medium">
                           {item.toUpperCase()}
                         </Td>
                       );
@@ -209,9 +209,9 @@ export default function List() {
                 </Thead>
                 <Tbody>
                   {users.length > 0
-                    ? users.map((row: ListProps, index) => {
+                    ? users.map((row: ListProps) => {
                       return (
-                        <Tr key={index}>
+                        <Tr key={row.id}>
                           <Td
                             maxW="200px"
                             whiteSpace="nowrap"
